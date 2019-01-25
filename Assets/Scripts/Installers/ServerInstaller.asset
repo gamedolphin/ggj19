@@ -15,3 +15,5 @@ MonoBehaviour:
   networkSettings:
     Port: 5000
     Key: password
+  playerPrefab: {fileID: 1298542375730267258, guid: a29e42435c33721428b946302998ce18,
+    type: 3}

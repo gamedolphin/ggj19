@@ -21,8 +21,11 @@ namespace Client {
 
         private NetManager client;
         private NetPeer server;
+        private byte[] temp = new byte[1024];
+        private ClientSimulation clientSim;
 
-        public ClientNetworkManager(ClientNetworkSettings settings) {
+        public ClientNetworkManager(ClientNetworkSettings settings, ClientSimulation sim) {
+            clientSim = sim;
             client = new NetManager(this);
             client.Start();
             client.UpdateTime = 15;
@@ -59,6 +62,13 @@ namespace Client {
         }
 
         public void OnNetworkReceive(NetPeer peer, NetPacketReader reader, DeliveryMethod deliveryMethod) {
+
+            var available = reader.AvailableBytes;
+            reader.GetBytes(temp, available);
+            var worldState = ZeroFormatterSerializer.Deserialize<WorldState>(temp);
+
+            clientSim.AddWorldState(worldState);
+
 
         }
 

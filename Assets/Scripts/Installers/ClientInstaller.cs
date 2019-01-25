@@ -6,8 +6,12 @@ using Client;
 public class ClientInstaller : ScriptableObjectInstaller<ClientInstaller> {
 
     [SerializeField] private ClientNetworkSettings networkSettings;
+    [SerializeField] private ClientSimulationPlayer playerPrefab;
 
     public override void InstallBindings() {
-        Container.BindInterfacesAndSelfTo<ClientNetworkManager>().AsSingle().WithArguments(networkSettings).NonLazy();
+        Container.BindFactory<long, ClientSimulationPlayer, ClientSimulationPlayer.Factory>().FromComponentInNewPrefab(playerPrefab);
+        Container.BindInterfacesAndSelfTo<ClientSimulation>().AsSingle();
+        Container.BindInstance(networkSettings);
+        Container.BindInterfacesAndSelfTo<ClientNetworkManager>().AsSingle().NonLazy();
     }
 }

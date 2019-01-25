@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Sockets;
 using System;
 using ZeroFormatter;
+using UnityEngine;
 
 namespace Server  {
 
@@ -20,12 +21,16 @@ namespace Server  {
 
         private NetManager server;
         private string key;
-        byte[] temp = new byte[1024];
+        private byte[] temp = new byte[1024];
+        private float updateTime = 0.2f;
+        private float oldTime = 0;
 
         private List<NetPeer> clientList = new List<NetPeer>();
-        private Dictionary<long, NetPeer> clientDic = new Dictionary<long,NetPeer>();
 
-        public ServerNetworkManager(ServerNetworkSettings settings) {
+        private ServerSimulation serverSimulation;
+
+        public ServerNetworkManager(ServerNetworkSettings settings, ServerSimulation sim) {
+            serverSimulation = sim;
             server = new NetManager(this);
             server.Start(settings.Port);
             server.UpdateTime = 15;
@@ -38,6 +43,19 @@ namespace Server  {
 
         public void Tick() {
             server.PollEvents();
+
+            if(Time.time - oldTime > updateTime) {
+                oldTime = Time.time;
+                UpdateAllClients();
+            }
+        }
+
+        private void UpdateAllClients() {
+            var worldState = serverSimulation.GetWorldState();
+            var serialized = ZeroFormatterSerializer.Serialize(worldState);
+            for (int i = 0; i < clientList.Count; ++i) {
+                clientList[i].Send(serialized, DeliveryMethod.ReliableOrdered);
+            }
         }
 
         public void Initialize() {
@@ -48,7 +66,7 @@ namespace Server  {
             Debug.Log("[SERVER] We have new peer " + peer.EndPoint);
 
             clientList.Add(peer);
-            clientDic.Add(peer.Id, peer);
+            serverSimulation.AddPlayer(peer.Id, peer);
         }
 
         public void OnNetworkError(IPEndPoint endPoint, SocketError socketErrorCode) {
@@ -70,7 +88,7 @@ namespace Server  {
             Debug.Log("[SERVER] peer disconnected " + peer.EndPoint + ", info: " + disconnectInfo.Reason);
 
             clientList.RemoveAll(client => client.Id == peer.Id);
-            clientDic.Remove(peer.Id);
+            serverSimulation.RemovePlayer(peer.Id);
         }
 
         public void OnNetworkReceive(NetPeer peer, NetPacketReader reader, DeliveryMethod deliveryMethod) {
@@ -79,7 +97,7 @@ namespace Server  {
             var available = reader.AvailableBytes;
             reader.GetBytes(temp, available);
             var inputData = ZeroFormatterSerializer.Deserialize<InputData>(temp);
-
+            serverSimulation.AddInput(peer.Id, inputData);
             reader.Recycle();
         }
     }
