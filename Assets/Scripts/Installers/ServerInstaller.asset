@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fc3543b23c4d8543a4be0fb58c03b3d, type: 3}
-  m_Name: GameConfig
+  m_Script: {fileID: 11500000, guid: d6b61641b7bab244fa29c811a34ca51c, type: 3}
+  m_Name: ServerInstaller
   m_EditorClassIdentifier: 

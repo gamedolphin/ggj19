@@ -9,7 +9,19 @@ public enum GameType {
 public class GameConfig : ScriptableObjectInstaller<GameConfig> {
 
     [SerializeField] private GameType gameType;
+    [SerializeField] private ScriptableObjectInstaller serverInstaller;
+    [SerializeField] private ScriptableObjectInstaller clientInstaller;
+
 
     public override void InstallBindings() {
+
+        if(gameType == GameType.SERVER) {
+            Container.Inject(serverInstaller);
+            serverInstaller.InstallBindings();
+        }
+        else if(gameType == GameType.CLIENT) {
+            Container.Inject(clientInstaller);
+            clientInstaller.InstallBindings();
+        }
     }
 }
