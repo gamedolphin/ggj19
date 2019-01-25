@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b61641b7bab244fa29c811a34ca51c, type: 3}
   m_Name: ServerInstaller
   m_EditorClassIdentifier: 
+  networkSettings:
+    Port: 5000
+    Key: password

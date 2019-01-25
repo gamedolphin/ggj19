@@ -24,4 +24,18 @@ public class GameConfig : ScriptableObjectInstaller<GameConfig> {
             clientInstaller.InstallBindings();
         }
     }
+
+    public void RunServer() {
+        #if UNITY_EDITOR
+        gameType = GameType.SERVER;
+        UnityEditor.EditorApplication.isPlaying = true;
+        #endif
+    }
+
+    public void RunClient() {
+        #if UNITY_EDITOR
+        gameType = GameType.CLIENT;
+        UnityEditor.EditorApplication.isPlaying = true;
+        #endif
+    }
 }
