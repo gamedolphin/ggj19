@@ -9,15 +9,15 @@ public enum ClientEntityTypes {
 [RequireComponent(typeof(Rigidbody))]
 public class ClientSimulationEntity : MonoBehaviour {
 
-    public long Id;
+    public int Hashcode;
     public float speed = 5;
 
     public Vector3 targetPos;
     public Rigidbody rBody;
 
     [Inject]
-    public void Construct(long id) {
-        Id = id;
+    public void Construct(int id) {
+        Hashcode = id;
     }
 
     private void Awake() {

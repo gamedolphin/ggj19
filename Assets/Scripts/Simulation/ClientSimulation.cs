@@ -7,12 +7,12 @@ namespace Client {
 
     public class ClientSimulation : ITickable {
 
-        private Dictionary<long,ClientSimulationEntity> playerDic = new Dictionary<long, ClientSimulationEntity>();
+        private Dictionary<int,ClientSimulationEntity> playerDic = new Dictionary<int, ClientSimulationEntity>();
 
         private ClientSimulationPlayer.Factory ownPlayerFactory;
         private ClientSimulationOtherPlayers.Factory otherPlayerFactory;
 
-        private long ownId = -1;
+        private int ownId = -1;
 
         private Queue<WorldState> worldStates = new Queue<WorldState>();
 
@@ -22,8 +22,8 @@ namespace Client {
             otherPlayerFactory = other;
         }
 
-        public void SetOwnId(long id) {
-            ownId = id;
+        public void SetOwnId(int hashcode) {
+            ownId = hashcode;
         }
 
         public void AddWorldState(WorldState state) {
@@ -38,18 +38,18 @@ namespace Client {
                 for (int i=0; i < playerStates.Count; ++i) {
                     var st = playerStates[i];
 
-                    if(playerDic.ContainsKey(st.Id)) {
-                        playerDic[st.Id].UpdateEntityState(st);
+                    if(playerDic.ContainsKey(st.Hashcode)) {
+                        playerDic[st.Hashcode].UpdateEntityState(st);
                     }
                     else {
-                        if(st.Id == ownId) {
-                            var player = ownPlayerFactory.Create(st.Id);                                     player.transform.position = st.GetPosition();
-                            playerDic.Add(st.Id, player);
+                        if(st.Hashcode == ownId) {
+                            var player = ownPlayerFactory.Create(st.Hashcode);                               player.UpdateEntityState(st);
+                            playerDic.Add(st.Hashcode, player);
                         }
                         else {
-                            var player = otherPlayerFactory.Create(st.Id);
-                            player.transform.position = st.GetPosition();
-                            playerDic.Add(st.Id, player);
+                            var player = otherPlayerFactory.Create(st.Hashcode);
+                            player.UpdateEntityState(st);
+                            playerDic.Add(st.Hashcode, player);
                         }
                     }
                 }
@@ -59,7 +59,7 @@ namespace Client {
         }
 
         private void ClearUpPlayers(IList<PlayerState> states) {
-            var keys = playerDic.Where(kvp => !states.Any(p => kvp.Key == p.Id)).ToList();
+            var keys = playerDic.Where(kvp => !states.Any(p => kvp.Key == p.Hashcode)).ToList();
             foreach(var kvp in keys)
             {
                 GameObject.Destroy(kvp.Value.gameObject);

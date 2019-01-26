@@ -11,8 +11,8 @@ public class ClientInstaller : ScriptableObjectInstaller<ClientInstaller> {
 
     public override void InstallBindings() {
 
-        Container.BindFactory<long, ClientSimulationPlayer, ClientSimulationPlayer.Factory>().FromComponentInNewPrefab(playerPrefab);
-        Container.BindFactory<long, ClientSimulationOtherPlayers, ClientSimulationOtherPlayers.Factory>().FromComponentInNewPrefab(otherPlayerPrefab);
+        Container.BindFactory<int, ClientSimulationPlayer, ClientSimulationPlayer.Factory>().FromComponentInNewPrefab(playerPrefab);
+        Container.BindFactory<int, ClientSimulationOtherPlayers, ClientSimulationOtherPlayers.Factory>().FromComponentInNewPrefab(otherPlayerPrefab);
         Container.BindInterfacesAndSelfTo<ClientSimulation>().AsSingle();
         Container.BindInstance(networkSettings);
         Container.BindInterfacesAndSelfTo<ClientNetworkManager>().AsSingle().NonLazy();

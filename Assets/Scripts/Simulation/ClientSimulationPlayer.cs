@@ -3,7 +3,7 @@ using Zenject;
 using Client;
 
 public class ClientSimulationPlayer : ClientSimulationEntity {
-    public class Factory : PlaceholderFactory<long,ClientSimulationPlayer> {}
+    public class Factory : PlaceholderFactory<int,ClientSimulationPlayer> {}
 
     [Inject] private InputHandler inputHandler;
 

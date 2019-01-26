@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using LiteNetLib;
+using LiteNetLib.Utils;
 using System;
 using System.Net;
 using System.Net.Sockets;
@@ -29,7 +30,12 @@ namespace Client {
             client = new NetManager(this);
             client.Start();
             client.UpdateTime = 15;
-            client.Connect(settings.Ip, settings.Port, settings.Key);
+            int i = Guid.NewGuid().GetHashCode();
+            NetDataWriter writer = new NetDataWriter();
+            writer.Put("hashcode");
+            writer.Put(i);
+            clientSim.SetOwnId(i);
+            var p = client.Connect(settings.Ip, settings.Port, writer);
         }
 
         public void Dispose() {
@@ -53,9 +59,8 @@ namespace Client {
         }
 
         public void OnPeerConnected(NetPeer peer) {
-            Debug.Log("[CLIENT] We connected to " + peer.EndPoint);
+            Debug.Log("[CLIENT] We connected to " + peer.GetHashCode());
             server = peer;
-            clientSim.SetOwnId(peer.Id);
         }
 
         public void OnNetworkError(IPEndPoint endPoint, SocketError socketErrorCode) {

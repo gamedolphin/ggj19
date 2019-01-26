@@ -32,6 +32,71 @@ namespace ZeroFormatter
             ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::ClientEntityTypes?>.Register(new ZeroFormatter.DynamicObjectSegments.NullableClientEntityTypesFormatter<ZeroFormatter.Formatters.DefaultResolver>());
             ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::ClientEntityTypes?>.Register(new NullableEqualityComparer<global::ClientEntityTypes>());
             
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_BrushMirror>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_BrushMirrorFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_BrushMirror>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_BrushMirrorEqualityComparer());
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_BrushMirror?>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.Nullablez_BrushMirrorFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_BrushMirror?>.Register(new NullableEqualityComparer<global::Polybrush.z_BrushMirror>());
+            
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_ComponentIndex>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_ComponentIndexFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_ComponentIndex>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_ComponentIndexEqualityComparer());
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_ComponentIndex?>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.Nullablez_ComponentIndexFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_ComponentIndex?>.Register(new NullableEqualityComparer<global::Polybrush.z_ComponentIndex>());
+            
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_ComponentIndexType>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_ComponentIndexTypeFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_ComponentIndexType>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_ComponentIndexTypeEqualityComparer());
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_ComponentIndexType?>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.Nullablez_ComponentIndexTypeFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_ComponentIndexType?>.Register(new NullableEqualityComparer<global::Polybrush.z_ComponentIndexType>());
+            
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.Culling>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.CullingFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.Culling>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.CullingEqualityComparer());
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.Culling?>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.NullableCullingFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.Culling?>.Register(new NullableEqualityComparer<global::Polybrush.Culling>());
+            
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_Direction>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_DirectionFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_Direction>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_DirectionEqualityComparer());
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_Direction?>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.Nullablez_DirectionFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_Direction?>.Register(new NullableEqualityComparer<global::Polybrush.z_Direction>());
+            
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_MeshChannel>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_MeshChannelFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_MeshChannel>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_MeshChannelEqualityComparer());
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_MeshChannel?>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.Nullablez_MeshChannelFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_MeshChannel?>.Register(new NullableEqualityComparer<global::Polybrush.z_MeshChannel>());
+            
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_MirrorCoordinateSpace>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_MirrorCoordinateSpaceFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_MirrorCoordinateSpace>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_MirrorCoordinateSpaceEqualityComparer());
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_MirrorCoordinateSpace?>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.Nullablez_MirrorCoordinateSpaceFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_MirrorCoordinateSpace?>.Register(new NullableEqualityComparer<global::Polybrush.z_MirrorCoordinateSpace>());
+            
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_ModelSource>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_ModelSourceFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_ModelSource>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_ModelSourceEqualityComparer());
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_ModelSource?>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.Nullablez_ModelSourceFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_ModelSource?>.Register(new NullableEqualityComparer<global::Polybrush.z_ModelSource>());
+            
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_PaintMode>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_PaintModeFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_PaintMode>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_PaintModeEqualityComparer());
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_PaintMode?>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.Nullablez_PaintModeFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_PaintMode?>.Register(new NullableEqualityComparer<global::Polybrush.z_PaintMode>());
+            
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_PlacementDirection>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_PlacementDirectionFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_PlacementDirection>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_PlacementDirectionEqualityComparer());
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_PlacementDirection?>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.Nullablez_PlacementDirectionFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_PlacementDirection?>.Register(new NullableEqualityComparer<global::Polybrush.z_PlacementDirection>());
+            
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_SelectionRenderState>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_SelectionRenderStateFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_SelectionRenderState>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.z_SelectionRenderStateEqualityComparer());
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::Polybrush.z_SelectionRenderState?>.Register(new ZeroFormatter.DynamicObjectSegments.Polybrush.Nullablez_SelectionRenderStateFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::Polybrush.z_SelectionRenderState?>.Register(new NullableEqualityComparer<global::Polybrush.z_SelectionRenderState>());
+            
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::ProGrids.Axis>.Register(new ZeroFormatter.DynamicObjectSegments.ProGrids.AxisFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::ProGrids.Axis>.Register(new ZeroFormatter.DynamicObjectSegments.ProGrids.AxisEqualityComparer());
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::ProGrids.Axis?>.Register(new ZeroFormatter.DynamicObjectSegments.ProGrids.NullableAxisFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::ProGrids.Axis?>.Register(new NullableEqualityComparer<global::ProGrids.Axis>());
+            
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::ProGrids.SnapUnit>.Register(new ZeroFormatter.DynamicObjectSegments.ProGrids.SnapUnitFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::ProGrids.SnapUnit>.Register(new ZeroFormatter.DynamicObjectSegments.ProGrids.SnapUnitEqualityComparer());
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::ProGrids.SnapUnit?>.Register(new ZeroFormatter.DynamicObjectSegments.ProGrids.NullableSnapUnitFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::ProGrids.SnapUnit?>.Register(new NullableEqualityComparer<global::ProGrids.SnapUnit>());
+            
             // Objects
             ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::WorldState>.Register(new ZeroFormatter.DynamicObjectSegments.WorldStateFormatter<ZeroFormatter.Formatters.DefaultResolver>());
             // Structs
@@ -262,7 +327,7 @@ namespace ZeroFormatter.DynamicObjectSegments
     public class PlayerStateFormatter<TTypeResolver> : Formatter<TTypeResolver, global::PlayerState>
         where TTypeResolver : ITypeResolver, new()
     {
-        readonly Formatter<TTypeResolver, long> formatter0;
+        readonly Formatter<TTypeResolver, int> formatter0;
         readonly Formatter<TTypeResolver, global::Vector3Sim> formatter1;
         readonly Formatter<TTypeResolver, long> formatter2;
         
@@ -279,7 +344,7 @@ namespace ZeroFormatter.DynamicObjectSegments
 
         public PlayerStateFormatter()
         {
-            formatter0 = Formatter<TTypeResolver, long>.Default;
+            formatter0 = Formatter<TTypeResolver, int>.Default;
             formatter1 = Formatter<TTypeResolver, global::Vector3Sim>.Default;
             formatter2 = Formatter<TTypeResolver, long>.Default;
             
@@ -293,7 +358,7 @@ namespace ZeroFormatter.DynamicObjectSegments
         public override int Serialize(ref byte[] bytes, int offset, global::PlayerState value)
         {
             var startOffset = offset;
-            offset += formatter0.Serialize(ref bytes, offset, value.Id);
+            offset += formatter0.Serialize(ref bytes, offset, value.Hashcode);
             offset += formatter1.Serialize(ref bytes, offset, value.Position);
             offset += formatter2.Serialize(ref bytes, offset, value.Index);
             return offset - startOffset;
@@ -545,6 +610,965 @@ namespace ZeroFormatter.DynamicObjectSegments
         }
 
         public int GetHashCode(global::ClientEntityTypes x)
+        {
+            return (int)x;
+        }
+    }
+
+
+
+}
+#pragma warning restore 168
+#pragma warning restore 414
+#pragma warning restore 618
+#pragma warning restore 612
+#pragma warning disable 618
+#pragma warning disable 612
+#pragma warning disable 414
+#pragma warning disable 168
+namespace ZeroFormatter.DynamicObjectSegments.Polybrush
+{
+    using global::System;
+    using global::System.Collections.Generic;
+    using global::ZeroFormatter.Formatters;
+    using global::ZeroFormatter.Internal;
+    using global::ZeroFormatter.Segments;
+
+
+    public class z_BrushMirrorFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_BrushMirror>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 4;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_BrushMirror value)
+        {
+            return BinaryUtil.WriteInt32(ref bytes, offset, (Int32)value);
+        }
+
+        public override global::Polybrush.z_BrushMirror Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 4;
+            return (global::Polybrush.z_BrushMirror)BinaryUtil.ReadInt32(ref bytes, offset);
+        }
+    }
+
+
+    public class Nullablez_BrushMirrorFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_BrushMirror?>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 5;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_BrushMirror? value)
+        {
+            BinaryUtil.WriteBoolean(ref bytes, offset, value.HasValue);
+            if (value.HasValue)
+            {
+                BinaryUtil.WriteInt32(ref bytes, offset + 1, (Int32)value.Value);
+            }
+            else
+            {
+                BinaryUtil.EnsureCapacity(ref bytes, offset, offset + 5);
+            }
+
+            return 5;
+        }
+
+        public override global::Polybrush.z_BrushMirror? Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 5;
+            var hasValue = BinaryUtil.ReadBoolean(ref bytes, offset);
+            if (!hasValue) return null;
+
+            return (global::Polybrush.z_BrushMirror)BinaryUtil.ReadInt32(ref bytes, offset + 1);
+        }
+    }
+
+
+
+    public class z_BrushMirrorEqualityComparer : IEqualityComparer<global::Polybrush.z_BrushMirror>
+    {
+        public bool Equals(global::Polybrush.z_BrushMirror x, global::Polybrush.z_BrushMirror y)
+        {
+            return (Int32)x == (Int32)y;
+        }
+
+        public int GetHashCode(global::Polybrush.z_BrushMirror x)
+        {
+            return (int)x;
+        }
+    }
+
+
+
+    public class z_ComponentIndexFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_ComponentIndex>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 4;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_ComponentIndex value)
+        {
+            return BinaryUtil.WriteInt32(ref bytes, offset, (Int32)value);
+        }
+
+        public override global::Polybrush.z_ComponentIndex Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 4;
+            return (global::Polybrush.z_ComponentIndex)BinaryUtil.ReadInt32(ref bytes, offset);
+        }
+    }
+
+
+    public class Nullablez_ComponentIndexFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_ComponentIndex?>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 5;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_ComponentIndex? value)
+        {
+            BinaryUtil.WriteBoolean(ref bytes, offset, value.HasValue);
+            if (value.HasValue)
+            {
+                BinaryUtil.WriteInt32(ref bytes, offset + 1, (Int32)value.Value);
+            }
+            else
+            {
+                BinaryUtil.EnsureCapacity(ref bytes, offset, offset + 5);
+            }
+
+            return 5;
+        }
+
+        public override global::Polybrush.z_ComponentIndex? Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 5;
+            var hasValue = BinaryUtil.ReadBoolean(ref bytes, offset);
+            if (!hasValue) return null;
+
+            return (global::Polybrush.z_ComponentIndex)BinaryUtil.ReadInt32(ref bytes, offset + 1);
+        }
+    }
+
+
+
+    public class z_ComponentIndexEqualityComparer : IEqualityComparer<global::Polybrush.z_ComponentIndex>
+    {
+        public bool Equals(global::Polybrush.z_ComponentIndex x, global::Polybrush.z_ComponentIndex y)
+        {
+            return (Int32)x == (Int32)y;
+        }
+
+        public int GetHashCode(global::Polybrush.z_ComponentIndex x)
+        {
+            return (int)x;
+        }
+    }
+
+
+
+    public class z_ComponentIndexTypeFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_ComponentIndexType>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 4;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_ComponentIndexType value)
+        {
+            return BinaryUtil.WriteInt32(ref bytes, offset, (Int32)value);
+        }
+
+        public override global::Polybrush.z_ComponentIndexType Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 4;
+            return (global::Polybrush.z_ComponentIndexType)BinaryUtil.ReadInt32(ref bytes, offset);
+        }
+    }
+
+
+    public class Nullablez_ComponentIndexTypeFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_ComponentIndexType?>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 5;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_ComponentIndexType? value)
+        {
+            BinaryUtil.WriteBoolean(ref bytes, offset, value.HasValue);
+            if (value.HasValue)
+            {
+                BinaryUtil.WriteInt32(ref bytes, offset + 1, (Int32)value.Value);
+            }
+            else
+            {
+                BinaryUtil.EnsureCapacity(ref bytes, offset, offset + 5);
+            }
+
+            return 5;
+        }
+
+        public override global::Polybrush.z_ComponentIndexType? Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 5;
+            var hasValue = BinaryUtil.ReadBoolean(ref bytes, offset);
+            if (!hasValue) return null;
+
+            return (global::Polybrush.z_ComponentIndexType)BinaryUtil.ReadInt32(ref bytes, offset + 1);
+        }
+    }
+
+
+
+    public class z_ComponentIndexTypeEqualityComparer : IEqualityComparer<global::Polybrush.z_ComponentIndexType>
+    {
+        public bool Equals(global::Polybrush.z_ComponentIndexType x, global::Polybrush.z_ComponentIndexType y)
+        {
+            return (Int32)x == (Int32)y;
+        }
+
+        public int GetHashCode(global::Polybrush.z_ComponentIndexType x)
+        {
+            return (int)x;
+        }
+    }
+
+
+
+    public class CullingFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.Culling>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 4;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.Culling value)
+        {
+            return BinaryUtil.WriteInt32(ref bytes, offset, (Int32)value);
+        }
+
+        public override global::Polybrush.Culling Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 4;
+            return (global::Polybrush.Culling)BinaryUtil.ReadInt32(ref bytes, offset);
+        }
+    }
+
+
+    public class NullableCullingFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.Culling?>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 5;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.Culling? value)
+        {
+            BinaryUtil.WriteBoolean(ref bytes, offset, value.HasValue);
+            if (value.HasValue)
+            {
+                BinaryUtil.WriteInt32(ref bytes, offset + 1, (Int32)value.Value);
+            }
+            else
+            {
+                BinaryUtil.EnsureCapacity(ref bytes, offset, offset + 5);
+            }
+
+            return 5;
+        }
+
+        public override global::Polybrush.Culling? Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 5;
+            var hasValue = BinaryUtil.ReadBoolean(ref bytes, offset);
+            if (!hasValue) return null;
+
+            return (global::Polybrush.Culling)BinaryUtil.ReadInt32(ref bytes, offset + 1);
+        }
+    }
+
+
+
+    public class CullingEqualityComparer : IEqualityComparer<global::Polybrush.Culling>
+    {
+        public bool Equals(global::Polybrush.Culling x, global::Polybrush.Culling y)
+        {
+            return (Int32)x == (Int32)y;
+        }
+
+        public int GetHashCode(global::Polybrush.Culling x)
+        {
+            return (int)x;
+        }
+    }
+
+
+
+    public class z_DirectionFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_Direction>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 4;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_Direction value)
+        {
+            return BinaryUtil.WriteInt32(ref bytes, offset, (Int32)value);
+        }
+
+        public override global::Polybrush.z_Direction Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 4;
+            return (global::Polybrush.z_Direction)BinaryUtil.ReadInt32(ref bytes, offset);
+        }
+    }
+
+
+    public class Nullablez_DirectionFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_Direction?>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 5;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_Direction? value)
+        {
+            BinaryUtil.WriteBoolean(ref bytes, offset, value.HasValue);
+            if (value.HasValue)
+            {
+                BinaryUtil.WriteInt32(ref bytes, offset + 1, (Int32)value.Value);
+            }
+            else
+            {
+                BinaryUtil.EnsureCapacity(ref bytes, offset, offset + 5);
+            }
+
+            return 5;
+        }
+
+        public override global::Polybrush.z_Direction? Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 5;
+            var hasValue = BinaryUtil.ReadBoolean(ref bytes, offset);
+            if (!hasValue) return null;
+
+            return (global::Polybrush.z_Direction)BinaryUtil.ReadInt32(ref bytes, offset + 1);
+        }
+    }
+
+
+
+    public class z_DirectionEqualityComparer : IEqualityComparer<global::Polybrush.z_Direction>
+    {
+        public bool Equals(global::Polybrush.z_Direction x, global::Polybrush.z_Direction y)
+        {
+            return (Int32)x == (Int32)y;
+        }
+
+        public int GetHashCode(global::Polybrush.z_Direction x)
+        {
+            return (int)x;
+        }
+    }
+
+
+
+    public class z_MeshChannelFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_MeshChannel>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 4;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_MeshChannel value)
+        {
+            return BinaryUtil.WriteInt32(ref bytes, offset, (Int32)value);
+        }
+
+        public override global::Polybrush.z_MeshChannel Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 4;
+            return (global::Polybrush.z_MeshChannel)BinaryUtil.ReadInt32(ref bytes, offset);
+        }
+    }
+
+
+    public class Nullablez_MeshChannelFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_MeshChannel?>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 5;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_MeshChannel? value)
+        {
+            BinaryUtil.WriteBoolean(ref bytes, offset, value.HasValue);
+            if (value.HasValue)
+            {
+                BinaryUtil.WriteInt32(ref bytes, offset + 1, (Int32)value.Value);
+            }
+            else
+            {
+                BinaryUtil.EnsureCapacity(ref bytes, offset, offset + 5);
+            }
+
+            return 5;
+        }
+
+        public override global::Polybrush.z_MeshChannel? Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 5;
+            var hasValue = BinaryUtil.ReadBoolean(ref bytes, offset);
+            if (!hasValue) return null;
+
+            return (global::Polybrush.z_MeshChannel)BinaryUtil.ReadInt32(ref bytes, offset + 1);
+        }
+    }
+
+
+
+    public class z_MeshChannelEqualityComparer : IEqualityComparer<global::Polybrush.z_MeshChannel>
+    {
+        public bool Equals(global::Polybrush.z_MeshChannel x, global::Polybrush.z_MeshChannel y)
+        {
+            return (Int32)x == (Int32)y;
+        }
+
+        public int GetHashCode(global::Polybrush.z_MeshChannel x)
+        {
+            return (int)x;
+        }
+    }
+
+
+
+    public class z_MirrorCoordinateSpaceFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_MirrorCoordinateSpace>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 4;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_MirrorCoordinateSpace value)
+        {
+            return BinaryUtil.WriteInt32(ref bytes, offset, (Int32)value);
+        }
+
+        public override global::Polybrush.z_MirrorCoordinateSpace Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 4;
+            return (global::Polybrush.z_MirrorCoordinateSpace)BinaryUtil.ReadInt32(ref bytes, offset);
+        }
+    }
+
+
+    public class Nullablez_MirrorCoordinateSpaceFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_MirrorCoordinateSpace?>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 5;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_MirrorCoordinateSpace? value)
+        {
+            BinaryUtil.WriteBoolean(ref bytes, offset, value.HasValue);
+            if (value.HasValue)
+            {
+                BinaryUtil.WriteInt32(ref bytes, offset + 1, (Int32)value.Value);
+            }
+            else
+            {
+                BinaryUtil.EnsureCapacity(ref bytes, offset, offset + 5);
+            }
+
+            return 5;
+        }
+
+        public override global::Polybrush.z_MirrorCoordinateSpace? Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 5;
+            var hasValue = BinaryUtil.ReadBoolean(ref bytes, offset);
+            if (!hasValue) return null;
+
+            return (global::Polybrush.z_MirrorCoordinateSpace)BinaryUtil.ReadInt32(ref bytes, offset + 1);
+        }
+    }
+
+
+
+    public class z_MirrorCoordinateSpaceEqualityComparer : IEqualityComparer<global::Polybrush.z_MirrorCoordinateSpace>
+    {
+        public bool Equals(global::Polybrush.z_MirrorCoordinateSpace x, global::Polybrush.z_MirrorCoordinateSpace y)
+        {
+            return (Int32)x == (Int32)y;
+        }
+
+        public int GetHashCode(global::Polybrush.z_MirrorCoordinateSpace x)
+        {
+            return (int)x;
+        }
+    }
+
+
+
+    public class z_ModelSourceFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_ModelSource>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 4;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_ModelSource value)
+        {
+            return BinaryUtil.WriteInt32(ref bytes, offset, (Int32)value);
+        }
+
+        public override global::Polybrush.z_ModelSource Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 4;
+            return (global::Polybrush.z_ModelSource)BinaryUtil.ReadInt32(ref bytes, offset);
+        }
+    }
+
+
+    public class Nullablez_ModelSourceFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_ModelSource?>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 5;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_ModelSource? value)
+        {
+            BinaryUtil.WriteBoolean(ref bytes, offset, value.HasValue);
+            if (value.HasValue)
+            {
+                BinaryUtil.WriteInt32(ref bytes, offset + 1, (Int32)value.Value);
+            }
+            else
+            {
+                BinaryUtil.EnsureCapacity(ref bytes, offset, offset + 5);
+            }
+
+            return 5;
+        }
+
+        public override global::Polybrush.z_ModelSource? Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 5;
+            var hasValue = BinaryUtil.ReadBoolean(ref bytes, offset);
+            if (!hasValue) return null;
+
+            return (global::Polybrush.z_ModelSource)BinaryUtil.ReadInt32(ref bytes, offset + 1);
+        }
+    }
+
+
+
+    public class z_ModelSourceEqualityComparer : IEqualityComparer<global::Polybrush.z_ModelSource>
+    {
+        public bool Equals(global::Polybrush.z_ModelSource x, global::Polybrush.z_ModelSource y)
+        {
+            return (Int32)x == (Int32)y;
+        }
+
+        public int GetHashCode(global::Polybrush.z_ModelSource x)
+        {
+            return (int)x;
+        }
+    }
+
+
+
+    public class z_PaintModeFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_PaintMode>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 4;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_PaintMode value)
+        {
+            return BinaryUtil.WriteInt32(ref bytes, offset, (Int32)value);
+        }
+
+        public override global::Polybrush.z_PaintMode Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 4;
+            return (global::Polybrush.z_PaintMode)BinaryUtil.ReadInt32(ref bytes, offset);
+        }
+    }
+
+
+    public class Nullablez_PaintModeFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_PaintMode?>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 5;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_PaintMode? value)
+        {
+            BinaryUtil.WriteBoolean(ref bytes, offset, value.HasValue);
+            if (value.HasValue)
+            {
+                BinaryUtil.WriteInt32(ref bytes, offset + 1, (Int32)value.Value);
+            }
+            else
+            {
+                BinaryUtil.EnsureCapacity(ref bytes, offset, offset + 5);
+            }
+
+            return 5;
+        }
+
+        public override global::Polybrush.z_PaintMode? Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 5;
+            var hasValue = BinaryUtil.ReadBoolean(ref bytes, offset);
+            if (!hasValue) return null;
+
+            return (global::Polybrush.z_PaintMode)BinaryUtil.ReadInt32(ref bytes, offset + 1);
+        }
+    }
+
+
+
+    public class z_PaintModeEqualityComparer : IEqualityComparer<global::Polybrush.z_PaintMode>
+    {
+        public bool Equals(global::Polybrush.z_PaintMode x, global::Polybrush.z_PaintMode y)
+        {
+            return (Int32)x == (Int32)y;
+        }
+
+        public int GetHashCode(global::Polybrush.z_PaintMode x)
+        {
+            return (int)x;
+        }
+    }
+
+
+
+    public class z_PlacementDirectionFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_PlacementDirection>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 4;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_PlacementDirection value)
+        {
+            return BinaryUtil.WriteInt32(ref bytes, offset, (Int32)value);
+        }
+
+        public override global::Polybrush.z_PlacementDirection Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 4;
+            return (global::Polybrush.z_PlacementDirection)BinaryUtil.ReadInt32(ref bytes, offset);
+        }
+    }
+
+
+    public class Nullablez_PlacementDirectionFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_PlacementDirection?>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 5;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_PlacementDirection? value)
+        {
+            BinaryUtil.WriteBoolean(ref bytes, offset, value.HasValue);
+            if (value.HasValue)
+            {
+                BinaryUtil.WriteInt32(ref bytes, offset + 1, (Int32)value.Value);
+            }
+            else
+            {
+                BinaryUtil.EnsureCapacity(ref bytes, offset, offset + 5);
+            }
+
+            return 5;
+        }
+
+        public override global::Polybrush.z_PlacementDirection? Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 5;
+            var hasValue = BinaryUtil.ReadBoolean(ref bytes, offset);
+            if (!hasValue) return null;
+
+            return (global::Polybrush.z_PlacementDirection)BinaryUtil.ReadInt32(ref bytes, offset + 1);
+        }
+    }
+
+
+
+    public class z_PlacementDirectionEqualityComparer : IEqualityComparer<global::Polybrush.z_PlacementDirection>
+    {
+        public bool Equals(global::Polybrush.z_PlacementDirection x, global::Polybrush.z_PlacementDirection y)
+        {
+            return (Int32)x == (Int32)y;
+        }
+
+        public int GetHashCode(global::Polybrush.z_PlacementDirection x)
+        {
+            return (int)x;
+        }
+    }
+
+
+
+    public class z_SelectionRenderStateFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_SelectionRenderState>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 4;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_SelectionRenderState value)
+        {
+            return BinaryUtil.WriteInt32(ref bytes, offset, (Int32)value);
+        }
+
+        public override global::Polybrush.z_SelectionRenderState Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 4;
+            return (global::Polybrush.z_SelectionRenderState)BinaryUtil.ReadInt32(ref bytes, offset);
+        }
+    }
+
+
+    public class Nullablez_SelectionRenderStateFormatter<TTypeResolver> : Formatter<TTypeResolver, global::Polybrush.z_SelectionRenderState?>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 5;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::Polybrush.z_SelectionRenderState? value)
+        {
+            BinaryUtil.WriteBoolean(ref bytes, offset, value.HasValue);
+            if (value.HasValue)
+            {
+                BinaryUtil.WriteInt32(ref bytes, offset + 1, (Int32)value.Value);
+            }
+            else
+            {
+                BinaryUtil.EnsureCapacity(ref bytes, offset, offset + 5);
+            }
+
+            return 5;
+        }
+
+        public override global::Polybrush.z_SelectionRenderState? Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 5;
+            var hasValue = BinaryUtil.ReadBoolean(ref bytes, offset);
+            if (!hasValue) return null;
+
+            return (global::Polybrush.z_SelectionRenderState)BinaryUtil.ReadInt32(ref bytes, offset + 1);
+        }
+    }
+
+
+
+    public class z_SelectionRenderStateEqualityComparer : IEqualityComparer<global::Polybrush.z_SelectionRenderState>
+    {
+        public bool Equals(global::Polybrush.z_SelectionRenderState x, global::Polybrush.z_SelectionRenderState y)
+        {
+            return (Int32)x == (Int32)y;
+        }
+
+        public int GetHashCode(global::Polybrush.z_SelectionRenderState x)
+        {
+            return (int)x;
+        }
+    }
+
+
+
+}
+#pragma warning restore 168
+#pragma warning restore 414
+#pragma warning restore 618
+#pragma warning restore 612
+#pragma warning disable 618
+#pragma warning disable 612
+#pragma warning disable 414
+#pragma warning disable 168
+namespace ZeroFormatter.DynamicObjectSegments.ProGrids
+{
+    using global::System;
+    using global::System.Collections.Generic;
+    using global::ZeroFormatter.Formatters;
+    using global::ZeroFormatter.Internal;
+    using global::ZeroFormatter.Segments;
+
+
+    public class AxisFormatter<TTypeResolver> : Formatter<TTypeResolver, global::ProGrids.Axis>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 4;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::ProGrids.Axis value)
+        {
+            return BinaryUtil.WriteInt32(ref bytes, offset, (Int32)value);
+        }
+
+        public override global::ProGrids.Axis Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 4;
+            return (global::ProGrids.Axis)BinaryUtil.ReadInt32(ref bytes, offset);
+        }
+    }
+
+
+    public class NullableAxisFormatter<TTypeResolver> : Formatter<TTypeResolver, global::ProGrids.Axis?>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 5;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::ProGrids.Axis? value)
+        {
+            BinaryUtil.WriteBoolean(ref bytes, offset, value.HasValue);
+            if (value.HasValue)
+            {
+                BinaryUtil.WriteInt32(ref bytes, offset + 1, (Int32)value.Value);
+            }
+            else
+            {
+                BinaryUtil.EnsureCapacity(ref bytes, offset, offset + 5);
+            }
+
+            return 5;
+        }
+
+        public override global::ProGrids.Axis? Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 5;
+            var hasValue = BinaryUtil.ReadBoolean(ref bytes, offset);
+            if (!hasValue) return null;
+
+            return (global::ProGrids.Axis)BinaryUtil.ReadInt32(ref bytes, offset + 1);
+        }
+    }
+
+
+
+    public class AxisEqualityComparer : IEqualityComparer<global::ProGrids.Axis>
+    {
+        public bool Equals(global::ProGrids.Axis x, global::ProGrids.Axis y)
+        {
+            return (Int32)x == (Int32)y;
+        }
+
+        public int GetHashCode(global::ProGrids.Axis x)
+        {
+            return (int)x;
+        }
+    }
+
+
+
+    public class SnapUnitFormatter<TTypeResolver> : Formatter<TTypeResolver, global::ProGrids.SnapUnit>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 4;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::ProGrids.SnapUnit value)
+        {
+            return BinaryUtil.WriteInt32(ref bytes, offset, (Int32)value);
+        }
+
+        public override global::ProGrids.SnapUnit Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 4;
+            return (global::ProGrids.SnapUnit)BinaryUtil.ReadInt32(ref bytes, offset);
+        }
+    }
+
+
+    public class NullableSnapUnitFormatter<TTypeResolver> : Formatter<TTypeResolver, global::ProGrids.SnapUnit?>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 5;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::ProGrids.SnapUnit? value)
+        {
+            BinaryUtil.WriteBoolean(ref bytes, offset, value.HasValue);
+            if (value.HasValue)
+            {
+                BinaryUtil.WriteInt32(ref bytes, offset + 1, (Int32)value.Value);
+            }
+            else
+            {
+                BinaryUtil.EnsureCapacity(ref bytes, offset, offset + 5);
+            }
+
+            return 5;
+        }
+
+        public override global::ProGrids.SnapUnit? Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 5;
+            var hasValue = BinaryUtil.ReadBoolean(ref bytes, offset);
+            if (!hasValue) return null;
+
+            return (global::ProGrids.SnapUnit)BinaryUtil.ReadInt32(ref bytes, offset + 1);
+        }
+    }
+
+
+
+    public class SnapUnitEqualityComparer : IEqualityComparer<global::ProGrids.SnapUnit>
+    {
+        public bool Equals(global::ProGrids.SnapUnit x, global::ProGrids.SnapUnit y)
+        {
+            return (Int32)x == (Int32)y;
+        }
+
+        public int GetHashCode(global::ProGrids.SnapUnit x)
         {
             return (int)x;
         }

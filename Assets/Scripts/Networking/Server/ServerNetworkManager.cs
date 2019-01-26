@@ -63,10 +63,9 @@ namespace Server  {
         }
 
         public void OnPeerConnected(NetPeer peer) {
-            Debug.Log("[SERVER] We have new peer " + peer.EndPoint);
-
+            Debug.Log("[SERVER] We have new peer " + peer.GetHashCode());
             clientList.Add(peer);
-            serverSimulation.AddPlayer(peer.Id, peer);
+            serverSimulation.AddPlayer((int)peer.Tag, peer);
         }
 
         public void OnNetworkError(IPEndPoint endPoint, SocketError socketErrorCode) {
@@ -81,13 +80,18 @@ namespace Server  {
         }
 
         public void OnConnectionRequest(ConnectionRequest request) {
-            request.AcceptIfKey(key);
+            var dataReader = request.Data;
+            string key = dataReader.GetString();
+            if(key != "hashcode")
+                request.Reject();
+            var peer = request.Accept();
+            peer.Tag = dataReader.GetInt();
         }
 
         public void OnPeerDisconnected(NetPeer peer, DisconnectInfo disconnectInfo) {
             Debug.Log("[SERVER] peer disconnected " + peer.EndPoint + ", info: " + disconnectInfo.Reason);
 
-            serverSimulation.RemovePlayer(peer.Id);
+            serverSimulation.RemovePlayer((int)peer.Tag);
             clientList.RemoveAll(client => client.Id == peer.Id);
         }
 
@@ -97,7 +101,7 @@ namespace Server  {
             var available = reader.AvailableBytes;
             reader.GetBytes(temp, available);
             var inputData = ZeroFormatterSerializer.Deserialize<InputData>(temp);
-            serverSimulation.AddInput(peer.Id, inputData);
+            serverSimulation.AddInput((int)peer.Tag, inputData);
             reader.Recycle();
         }
     }

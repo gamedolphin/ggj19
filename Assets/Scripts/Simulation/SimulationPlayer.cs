@@ -25,14 +25,14 @@ public struct Vector3Sim
 [ZeroFormattable]
 public struct PlayerState {
     [Index(0)]
-    public long Id;
+    public int Hashcode;
     [Index(1)]
     public Vector3Sim Position;
     [Index(2)]
     public long Index;
 
-    public PlayerState(long id, Vector3Sim pos, long index) {
-        Id = id;
+    public PlayerState(int hashcode, Vector3Sim pos, long index) {
+        Hashcode = hashcode;
         Position = pos;
         Index = index;
     }
@@ -46,7 +46,7 @@ public struct PlayerState {
 [RequireComponent(typeof(Rigidbody))]
 public class SimulationPlayer : MonoBehaviour {
 
-    public class Factory : PlaceholderFactory<long,SimulationPlayer> {
+    public class Factory : PlaceholderFactory<int,SimulationPlayer> {
     }
 
     private Rigidbody rBody;
@@ -54,17 +54,17 @@ public class SimulationPlayer : MonoBehaviour {
 
     private float speed = 5;
 
-    public long Id;
+    public int Hashcode;
     public long Index;
 
     [Inject]
-    public void Construct(long id) {
-        Id = id;
+    public void Construct(int hashcode) {
+        Hashcode = hashcode;
     }
 
     public PlayerState GetPlayerState() {
         var pos = rBody.position;
-        return new PlayerState(Id, new Vector3Sim(pos.x, pos.y, pos.z), Index);
+        return new PlayerState(Hashcode, new Vector3Sim(pos.x, pos.y, pos.z), Index);
     }
 
     private void Awake() {

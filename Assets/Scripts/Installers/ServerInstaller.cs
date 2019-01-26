@@ -9,7 +9,7 @@ public class ServerInstaller : ScriptableObjectInstaller<ServerInstaller> {
     [SerializeField] private SimulationPlayer playerPrefab;
 
     public override void InstallBindings() {
-        Container.BindFactory<long, SimulationPlayer, SimulationPlayer.Factory>().FromComponentInNewPrefab(playerPrefab);
+        Container.BindFactory<int, SimulationPlayer, SimulationPlayer.Factory>().FromComponentInNewPrefab(playerPrefab);
         Container.BindInterfacesAndSelfTo<ServerSimulation>().AsSingle();
         Container.BindInstance(networkSettings).AsSingle();
         Container.BindInterfacesAndSelfTo<ServerNetworkManager>().AsSingle().NonLazy();

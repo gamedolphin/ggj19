@@ -17,11 +17,11 @@ namespace Server {
     public class ServerSimulation  : IFixedTickable  {
 
         private struct InputInfo {
-            public long Id;
+            public int Hashcode;
             public InputData Data;
         }
 
-        public Dictionary<long, SimulationPlayer> playerDic = new Dictionary<long, SimulationPlayer>();
+        public Dictionary<int, SimulationPlayer> playerDic = new Dictionary<int, SimulationPlayer>();
         public List<SimulationPlayer> playerList =  new List<SimulationPlayer>();
 
         private SimulationPlayer.Factory simFactory;
@@ -34,31 +34,31 @@ namespace Server {
             spawnPoints = spP;
         }
 
-        public void AddPlayer(long id, NetPeer peer) {
-            var player = simFactory.Create(peer.Id);
+        public void AddPlayer(int hashcode, NetPeer peer) {
+            var player = simFactory.Create(hashcode);
             var randomTransform = spawnPoints[Random.RandomRange(0, spawnPoints.Count - 1)];
             Debug.Log("SPAWING AT "+randomTransform.position);
             player.transform.position = randomTransform.position;
-            playerDic.Add(id, player);
+            playerDic.Add(hashcode, player);
             playerList.Add(player);
         }
 
         public void FixedTick() {
             while(networkInput.Count > 0) {
                 var info = networkInput.Dequeue();
-                playerDic[info.Id].UpdateInput(info.Data);
+                playerDic[info.Hashcode].UpdateInput(info.Data);
             }
         }
 
-        public void RemovePlayer(long id) {
+        public void RemovePlayer(int id) {
             GameObject.Destroy(playerDic[id].gameObject);
             playerDic.Remove(id);
-            playerList.RemoveAll(p => p.Id == id);
+            playerList.RemoveAll(p => p.Hashcode == id);
         }
 
-        public void AddInput(long id, InputData data) {
+        public void AddInput(int id, InputData data) {
             networkInput.Enqueue(new InputInfo {
-                    Id = id,
+                    Hashcode = id,
                     Data = data
                 });
         }
