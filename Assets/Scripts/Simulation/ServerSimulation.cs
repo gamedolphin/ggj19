@@ -25,15 +25,20 @@ namespace Server {
         public List<SimulationPlayer> playerList =  new List<SimulationPlayer>();
 
         private SimulationPlayer.Factory simFactory;
+        private List<Transform> spawnPoints;
 
         private Queue<InputInfo> networkInput = new Queue<InputInfo>();
 
-        public ServerSimulation(SimulationPlayer.Factory playerFactory) {
+        public ServerSimulation(SimulationPlayer.Factory playerFactory, List<Transform> spP) {
             simFactory = playerFactory;
+            spawnPoints = spP;
         }
 
         public void AddPlayer(long id, NetPeer peer) {
             var player = simFactory.Create(peer.Id);
+            var randomTransform = spawnPoints[Random.RandomRange(0, spawnPoints.Count - 1)];
+            Debug.Log("SPAWING AT "+randomTransform.position);
+            player.transform.position = randomTransform.position;
             playerDic.Add(id, player);
             playerList.Add(player);
         }

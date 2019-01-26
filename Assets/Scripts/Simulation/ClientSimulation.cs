@@ -43,11 +43,12 @@ namespace Client {
                     }
                     else {
                         if(st.Id == ownId) {
-                            var player = ownPlayerFactory.Create(st.Id);
+                            var player = ownPlayerFactory.Create(st.Id);                                     player.transform.position = st.GetPosition();
                             playerDic.Add(st.Id, player);
                         }
                         else {
                             var player = otherPlayerFactory.Create(st.Id);
+                            player.transform.position = st.GetPosition();
                             playerDic.Add(st.Id, player);
                         }
                     }

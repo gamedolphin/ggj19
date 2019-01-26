@@ -424,32 +424,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &943036127 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8916756985380004797, guid: b14f37b1f647f994fb531481d33d17f1,
-    type: 3}
-  m_PrefabInstance: {fileID: 8916756984711837026}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &943036128 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8916756985380004738, guid: b14f37b1f647f994fb531481d33d17f1,
-    type: 3}
-  m_PrefabInstance: {fileID: 8916756984711837026}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &943036129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943036127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 1
 --- !u!1 &1036581202
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,34 +540,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1747282459 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8916756986186309497, guid: b14f37b1f647f994fb531481d33d17f1,
-    type: 3}
-  m_PrefabInstance: {fileID: 8916756984711837026}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1747282460 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8916756986186309502, guid: b14f37b1f647f994fb531481d33d17f1,
     type: 3}
   m_PrefabInstance: {fileID: 8916756984711837026}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1747282461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747282459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11b987890c19807489accfd2b14b5114, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomName: test
-  msgPrefab: {fileID: 4834818910383878853, guid: 75c68745121375146bd73a521adc6e35,
-    type: 3}
-  scrollContent: {fileID: 943036128}
 --- !u!1 &1909684608
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,11 +731,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8916756985917699072, guid: b14f37b1f647f994fb531481d33d17f1,
-        type: 3}
-      propertyPath: m_Horizontal
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8916756985380004738, guid: b14f37b1f647f994fb531481d33d17f1,
         type: 3}
