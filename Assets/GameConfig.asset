@@ -15,3 +15,4 @@ MonoBehaviour:
   gameType: 0
   serverInstaller: {fileID: 11400000, guid: c13bfc88ff93e2749820e6f5c100945b, type: 2}
   clientInstaller: {fileID: 11400000, guid: 881e2c45423e65145b74294caa527487, type: 2}
+  meteorInstaller: {fileID: 11400000, guid: 6635fddaaef593544ab10ef2e9a9f31a, type: 2}
