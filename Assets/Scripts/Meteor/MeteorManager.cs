@@ -15,15 +15,16 @@ public class MeteorManager {
 
 
     private string meteorUrl;
-    private bool connected = false;
+    public ReactiveProperty<bool> connected = new ReactiveProperty<bool>(false);
     private Meteor.Collection<ChatData> collection;
+
 
     public MeteorManager(string mUrl) {
         meteorUrl = mUrl;
         Observable.FromCoroutine(Connect)
             .Subscribe(_ => {
                     Debug.Log("CONNECTED");
-                    connected = true;
+                    connected.Value = true;
                     collection = new Meteor.Collection<ChatData> ("messages");
                 });
     }
@@ -33,7 +34,9 @@ public class MeteorManager {
     }
 
     public IObservable<bool> SendChat(string msg, string room) {
-        return Observable.FromCoroutine<bool>((observer, cancellationToken) => SendChat(msg, room, observer));
+        return Observable.FromCoroutine<bool>((observer, cancellationToken) => {
+                return SendChat(msg, room, observer);
+            });
     }
 
     public IObservable<ChatData> WatchChat() {
@@ -49,6 +52,10 @@ public class MeteorManager {
         return Observable.FromCoroutine<bool>((observer, cancellationToken) => SubscribeToChat(room, observer));
     }
 
+    public void UnsubscribeToChat() {
+        Meteor.Subscription.Unsubscribe("chatRoom");
+    }
+
     private IEnumerator SubscribeToChat(string room, IObserver<bool> observer) {
         var subscription = Meteor.Subscription.Subscribe ("chatRoom", room);
         yield return (Coroutine)subscription;
@@ -58,6 +65,13 @@ public class MeteorManager {
 
     private IEnumerator SendChat(string msg, string room, IObserver<bool> observer) {
         var username = PlayerPrefs.GetString("userName");
+
+        Debug.Log(username);
+
+        if(string.IsNullOrEmpty(username)) {
+            observer.OnNext(false);
+            observer.OnCompleted();
+        }
 
         var methodCall = Meteor.Method<bool>.Call ("sendMessage", room, msg, username);
 
