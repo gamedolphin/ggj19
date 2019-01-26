@@ -11,9 +11,13 @@ public class GameConfig : ScriptableObjectInstaller<GameConfig> {
     [SerializeField] private GameType gameType;
     [SerializeField] private ScriptableObjectInstaller serverInstaller;
     [SerializeField] private ScriptableObjectInstaller clientInstaller;
+    [SerializeField] private MeteorInstaller meteorInstaller;
 
 
     public override void InstallBindings() {
+
+        Container.Inject(meteorInstaller);
+        meteorInstaller.InstallBindings();
 
         // if(gameType == GameType.SERVER) {
         //     Container.Inject(serverInstaller);

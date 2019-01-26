@@ -22,7 +22,7 @@ namespace Server  {
         private NetManager server;
         private string key;
         private byte[] temp = new byte[1024];
-        private float updateTime = 1f;
+        private float updateTime = 0.2f;
         private float oldTime = 0;
 
         private List<NetPeer> clientList = new List<NetPeer>();
