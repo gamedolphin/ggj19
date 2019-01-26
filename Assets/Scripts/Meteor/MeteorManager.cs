@@ -9,6 +9,7 @@ public class ChatData : Meteor.MongoDocument {
     public string username;
     public string msg;
     public string room;
+    public long createdAt;
 }
 
 public class MeteorManager {
@@ -40,9 +41,12 @@ public class MeteorManager {
     }
 
     public IObservable<ChatData> WatchChat() {
+        long t = DateTimeOffset.Now.ToUnixTimeMilliseconds();
         return Observable.Create<ChatData>((IObserver<ChatData> observer) => {
                 collection.Find().Observe(added: (string id, ChatData doc) => {
-                        observer.OnNext(doc);
+                        if(doc.createdAt > t) {
+                            observer.OnNext(doc);
+                        }
                     });
                 return Disposable.Create(() => {});
             });

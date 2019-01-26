@@ -1,6 +1,8 @@
 using UnityEngine;
 using Zenject;
 using Client;
+using UnityEngine.UI;
+using TMPro;
 
 public class ClientSimulationPlayer : ClientSimulationEntity {
     public class Factory : PlaceholderFactory<int,ClientSimulationPlayer> {}
@@ -8,9 +10,14 @@ public class ClientSimulationPlayer : ClientSimulationEntity {
     [Inject] private InputHandler inputHandler;
 
     [SerializeField] private float smoothing = 1;
+    [SerializeField] private TextMeshPro name;
 
     private PlayerState[] states = new PlayerState[1024];
     private PlayerState latest;
+
+    private void Start() {
+        name.text = PlayerPrefs.GetString("userName");
+    }
 
     public override void FixedUpdate() {
         var pos = targetPos;
