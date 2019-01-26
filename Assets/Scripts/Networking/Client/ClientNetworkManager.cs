@@ -55,6 +55,7 @@ namespace Client {
         public void OnPeerConnected(NetPeer peer) {
             Debug.Log("[CLIENT] We connected to " + peer.EndPoint);
             server = peer;
+            clientSim.SetOwnId(peer.Id);
         }
 
         public void OnNetworkError(IPEndPoint endPoint, SocketError socketErrorCode) {

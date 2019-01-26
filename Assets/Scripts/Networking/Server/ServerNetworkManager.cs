@@ -22,7 +22,7 @@ namespace Server  {
         private NetManager server;
         private string key;
         private byte[] temp = new byte[1024];
-        private float updateTime = 0.2f;
+        private float updateTime = 1f;
         private float oldTime = 0;
 
         private List<NetPeer> clientList = new List<NetPeer>();
@@ -87,8 +87,8 @@ namespace Server  {
         public void OnPeerDisconnected(NetPeer peer, DisconnectInfo disconnectInfo) {
             Debug.Log("[SERVER] peer disconnected " + peer.EndPoint + ", info: " + disconnectInfo.Reason);
 
-            clientList.RemoveAll(client => client.Id == peer.Id);
             serverSimulation.RemovePlayer(peer.Id);
+            clientList.RemoveAll(client => client.Id == peer.Id);
         }
 
         public void OnNetworkReceive(NetPeer peer, NetPacketReader reader, DeliveryMethod deliveryMethod) {

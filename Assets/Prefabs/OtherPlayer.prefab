@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 5838388452939935589}
   - component: {fileID: 5838388452939935590}
   - component: {fileID: 5838388452939935591}
-  - component: {fileID: 5838388452939935584}
-  - component: {fileID: 3417044170459939962}
-  - component: {fileID: 5058437394488021499}
+  - component: {fileID: 466498347394993968}
+  - component: {fileID: 4577990862394581117}
+  - component: {fileID: 8650365950577158321}
   m_Layer: 0
-  m_Name: ClientPlayer
+  m_Name: OtherPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5838388452939935584
+--- !u!114 &466498347394993968
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,14 +89,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5838388452939935585}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c23d5334c91671478880059a9b7be67, type: 3}
+  m_Script: {fileID: 11500000, guid: 82838ca940fe6f948a6b250778a33a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
   speed: 5
   targetPos: {x: 0, y: 0, z: 0}
   rBody: {fileID: 0}
---- !u!54 &3417044170459939962
+--- !u!54 &4577990862394581117
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,7 +112,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &5058437394488021499
+--- !u!65 &8650365950577158321
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

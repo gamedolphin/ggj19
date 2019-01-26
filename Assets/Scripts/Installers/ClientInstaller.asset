@@ -18,3 +18,5 @@ MonoBehaviour:
     Key: password
   playerPrefab: {fileID: 5838388452939935584, guid: 83dafef53e8b52247b27849a16c96cee,
     type: 3}
+  otherPlayerPrefab: {fileID: 466498347394993968, guid: a9c6c6b0fb902834bbb482e4bb333515,
+    type: 3}

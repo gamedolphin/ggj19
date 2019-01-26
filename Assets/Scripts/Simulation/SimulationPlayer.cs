@@ -28,10 +28,17 @@ public struct PlayerState {
     public long Id;
     [Index(1)]
     public Vector3Sim Position;
+    [Index(2)]
+    public long Index;
 
-    public PlayerState(long id, Vector3Sim pos) {
+    public PlayerState(long id, Vector3Sim pos, long index) {
         Id = id;
         Position = pos;
+        Index = index;
+    }
+
+    public Vector3 GetPosition() {
+        return new Vector3(Position.x, Position.y, Position.z);
     }
 }
 
@@ -48,6 +55,7 @@ public class SimulationPlayer : MonoBehaviour {
     private float speed = 5;
 
     public long Id;
+    public long Index;
 
     [Inject]
     public void Construct(long id) {
@@ -56,7 +64,7 @@ public class SimulationPlayer : MonoBehaviour {
 
     public PlayerState GetPlayerState() {
         var pos = rBody.position;
-        return new PlayerState(Id, new Vector3Sim(pos.x, pos.y, pos.z));
+        return new PlayerState(Id, new Vector3Sim(pos.x, pos.y, pos.z), Index);
     }
 
     private void Awake() {
@@ -65,12 +73,10 @@ public class SimulationPlayer : MonoBehaviour {
 
     public void UpdateInput(InputData inputData) {
         currentInput = inputData;
-    }
-
-    private void FixedUpdate() {
         float x = currentInput.Left ? -1 : currentInput.Right ? 1 : 0;
         float y = currentInput.Up ? -1 : currentInput.Down ? 1 : 0;
         var direction = new Vector3(x,0,y);
         rBody.MovePosition(rBody.position + direction.normalized * speed * Time.fixedDeltaTime);
+        Index = currentInput.Index;
     }
 }

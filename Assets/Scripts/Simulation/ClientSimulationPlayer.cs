@@ -1,26 +1,39 @@
 using UnityEngine;
 using Zenject;
+using Client;
 
-public class ClientSimulationPlayer : MonoBehaviour {
+public class ClientSimulationPlayer : ClientSimulationEntity {
     public class Factory : PlaceholderFactory<long,ClientSimulationPlayer> {}
 
-    public long Id;
+    [Inject] private InputHandler inputHandler;
 
-    private float speed = 5;
+    [SerializeField] private float smoothing = 1;
 
-    private Vector3 targetPos;
+    private PlayerState[] states = new PlayerState[1024];
+    private PlayerState latest;
 
-    [Inject]
-    public void Construct(long id) {
-        Id = id;
+    public override void FixedUpdate() {
+        var pos = targetPos;
+        var serverIndex = latest.Index;
+        var diff = inputHandler.index - serverIndex;
+
+        for (int i=1; i <= diff; ++i) {
+            var inputSlot = (serverIndex+i) % 1024;
+            var currentInput = inputHandler.inputList[inputSlot];
+            float x = currentInput.Left ? -1 : currentInput.Right ? 1 : 0;
+            float y = currentInput.Up ? -1 : currentInput.Down ? 1 : 0;
+            var direction = new Vector3(x,0,y);
+            pos = (pos + direction.normalized * speed * Time.fixedDeltaTime);
+        }
+
+        rBody.MovePosition(pos);
+
     }
 
-    public void FixedUpdate() {
-        transform.position = Vector3.Lerp(transform.position, targetPos, Time.fixedDeltaTime * speed);
-    }
-
-    public void UpdatePlayerState(PlayerState state) {
-        var pos = state.Position;
-        targetPos = new Vector3(pos.x, pos.y, pos.z);
+    public override void UpdateEntityState(PlayerState state) {
+        base.UpdateEntityState(state);
+        long arrIndex = state.Index % 1024;
+        states[arrIndex] = state;
+        latest = state;
     }
 }

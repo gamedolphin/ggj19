@@ -14,12 +14,19 @@ public class WorldState {
 
 namespace Server {
 
-    public class ServerSimulation  {
+    public class ServerSimulation  : IFixedTickable  {
+
+        private struct InputInfo {
+            public long Id;
+            public InputData Data;
+        }
 
         public Dictionary<long, SimulationPlayer> playerDic = new Dictionary<long, SimulationPlayer>();
         public List<SimulationPlayer> playerList =  new List<SimulationPlayer>();
 
         private SimulationPlayer.Factory simFactory;
+
+        private Queue<InputInfo> networkInput = new Queue<InputInfo>();
 
         public ServerSimulation(SimulationPlayer.Factory playerFactory) {
             simFactory = playerFactory;
@@ -31,14 +38,24 @@ namespace Server {
             playerList.Add(player);
         }
 
+        public void FixedTick() {
+            while(networkInput.Count > 0) {
+                var info = networkInput.Dequeue();
+                playerDic[info.Id].UpdateInput(info.Data);
+            }
+        }
+
         public void RemovePlayer(long id) {
-            GameObject.Destroy(playerDic[id]);
+            GameObject.Destroy(playerDic[id].gameObject);
             playerDic.Remove(id);
             playerList.RemoveAll(p => p.Id == id);
         }
 
         public void AddInput(long id, InputData data) {
-            playerDic[id].UpdateInput(data);
+            networkInput.Enqueue(new InputInfo {
+                    Id = id,
+                    Data = data
+                });
         }
 
         public WorldState GetWorldState () {

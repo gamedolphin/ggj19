@@ -27,6 +27,11 @@ namespace ZeroFormatter
             ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::GameType?>.Register(new ZeroFormatter.DynamicObjectSegments.NullableGameTypeFormatter<ZeroFormatter.Formatters.DefaultResolver>());
             ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::GameType?>.Register(new NullableEqualityComparer<global::GameType>());
             
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::ClientEntityTypes>.Register(new ZeroFormatter.DynamicObjectSegments.ClientEntityTypesFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::ClientEntityTypes>.Register(new ZeroFormatter.DynamicObjectSegments.ClientEntityTypesEqualityComparer());
+            ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::ClientEntityTypes?>.Register(new ZeroFormatter.DynamicObjectSegments.NullableClientEntityTypesFormatter<ZeroFormatter.Formatters.DefaultResolver>());
+            ZeroFormatter.Comparers.ZeroFormatterEqualityComparer<global::ClientEntityTypes?>.Register(new NullableEqualityComparer<global::ClientEntityTypes>());
+            
             // Objects
             ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::WorldState>.Register(new ZeroFormatter.DynamicObjectSegments.WorldStateFormatter<ZeroFormatter.Formatters.DefaultResolver>());
             // Structs
@@ -259,6 +264,7 @@ namespace ZeroFormatter.DynamicObjectSegments
     {
         readonly Formatter<TTypeResolver, long> formatter0;
         readonly Formatter<TTypeResolver, global::Vector3Sim> formatter1;
+        readonly Formatter<TTypeResolver, long> formatter2;
         
         public override bool NoUseDirtyTracker
         {
@@ -266,6 +272,7 @@ namespace ZeroFormatter.DynamicObjectSegments
             {
                 return formatter0.NoUseDirtyTracker
                     && formatter1.NoUseDirtyTracker
+                    && formatter2.NoUseDirtyTracker
                 ;
             }
         }
@@ -274,6 +281,7 @@ namespace ZeroFormatter.DynamicObjectSegments
         {
             formatter0 = Formatter<TTypeResolver, long>.Default;
             formatter1 = Formatter<TTypeResolver, global::Vector3Sim>.Default;
+            formatter2 = Formatter<TTypeResolver, long>.Default;
             
         }
 
@@ -287,6 +295,7 @@ namespace ZeroFormatter.DynamicObjectSegments
             var startOffset = offset;
             offset += formatter0.Serialize(ref bytes, offset, value.Id);
             offset += formatter1.Serialize(ref bytes, offset, value.Position);
+            offset += formatter2.Serialize(ref bytes, offset, value.Index);
             return offset - startOffset;
         }
 
@@ -300,8 +309,11 @@ namespace ZeroFormatter.DynamicObjectSegments
             var item1 = formatter1.Deserialize(ref bytes, offset, tracker, out size);
             offset += size;
             byteSize += size;
+            var item2 = formatter2.Deserialize(ref bytes, offset, tracker, out size);
+            offset += size;
+            byteSize += size;
             
-            return new global::PlayerState(item0, item1);
+            return new global::PlayerState(item0, item1, item2);
         }
     }
 
@@ -312,6 +324,7 @@ namespace ZeroFormatter.DynamicObjectSegments
         readonly Formatter<TTypeResolver, bool> formatter1;
         readonly Formatter<TTypeResolver, bool> formatter2;
         readonly Formatter<TTypeResolver, bool> formatter3;
+        readonly Formatter<TTypeResolver, long> formatter4;
         
         public override bool NoUseDirtyTracker
         {
@@ -321,6 +334,7 @@ namespace ZeroFormatter.DynamicObjectSegments
                     && formatter1.NoUseDirtyTracker
                     && formatter2.NoUseDirtyTracker
                     && formatter3.NoUseDirtyTracker
+                    && formatter4.NoUseDirtyTracker
                 ;
             }
         }
@@ -331,22 +345,24 @@ namespace ZeroFormatter.DynamicObjectSegments
             formatter1 = Formatter<TTypeResolver, bool>.Default;
             formatter2 = Formatter<TTypeResolver, bool>.Default;
             formatter3 = Formatter<TTypeResolver, bool>.Default;
+            formatter4 = Formatter<TTypeResolver, long>.Default;
             
         }
 
         public override int? GetLength()
         {
-            return 4;
+            return 12;
         }
 
         public override int Serialize(ref byte[] bytes, int offset, global::InputData value)
         {
-            BinaryUtil.EnsureCapacity(ref bytes, offset, 4);
+            BinaryUtil.EnsureCapacity(ref bytes, offset, 12);
             var startOffset = offset;
             offset += formatter0.Serialize(ref bytes, offset, value.Right);
             offset += formatter1.Serialize(ref bytes, offset, value.Left);
             offset += formatter2.Serialize(ref bytes, offset, value.Up);
             offset += formatter3.Serialize(ref bytes, offset, value.Down);
+            offset += formatter4.Serialize(ref bytes, offset, value.Index);
             return offset - startOffset;
         }
 
@@ -366,8 +382,11 @@ namespace ZeroFormatter.DynamicObjectSegments
             var item3 = formatter3.Deserialize(ref bytes, offset, tracker, out size);
             offset += size;
             byteSize += size;
+            var item4 = formatter4.Deserialize(ref bytes, offset, tracker, out size);
+            offset += size;
+            byteSize += size;
             
-            return new global::InputData(item0, item1, item2, item3);
+            return new global::InputData(item0, item1, item2, item3, item4);
         }
     }
 
@@ -455,6 +474,77 @@ namespace ZeroFormatter.DynamicObjectSegments
         }
 
         public int GetHashCode(global::GameType x)
+        {
+            return (int)x;
+        }
+    }
+
+
+
+    public class ClientEntityTypesFormatter<TTypeResolver> : Formatter<TTypeResolver, global::ClientEntityTypes>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 4;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::ClientEntityTypes value)
+        {
+            return BinaryUtil.WriteInt32(ref bytes, offset, (Int32)value);
+        }
+
+        public override global::ClientEntityTypes Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 4;
+            return (global::ClientEntityTypes)BinaryUtil.ReadInt32(ref bytes, offset);
+        }
+    }
+
+
+    public class NullableClientEntityTypesFormatter<TTypeResolver> : Formatter<TTypeResolver, global::ClientEntityTypes?>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        public override int? GetLength()
+        {
+            return 5;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::ClientEntityTypes? value)
+        {
+            BinaryUtil.WriteBoolean(ref bytes, offset, value.HasValue);
+            if (value.HasValue)
+            {
+                BinaryUtil.WriteInt32(ref bytes, offset + 1, (Int32)value.Value);
+            }
+            else
+            {
+                BinaryUtil.EnsureCapacity(ref bytes, offset, offset + 5);
+            }
+
+            return 5;
+        }
+
+        public override global::ClientEntityTypes? Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 5;
+            var hasValue = BinaryUtil.ReadBoolean(ref bytes, offset);
+            if (!hasValue) return null;
+
+            return (global::ClientEntityTypes)BinaryUtil.ReadInt32(ref bytes, offset + 1);
+        }
+    }
+
+
+
+    public class ClientEntityTypesEqualityComparer : IEqualityComparer<global::ClientEntityTypes>
+    {
+        public bool Equals(global::ClientEntityTypes x, global::ClientEntityTypes y)
+        {
+            return (Int32)x == (Int32)y;
+        }
+
+        public int GetHashCode(global::ClientEntityTypes x)
         {
             return (int)x;
         }

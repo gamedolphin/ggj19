@@ -15,27 +15,27 @@ public class GameConfig : ScriptableObjectInstaller<GameConfig> {
 
     public override void InstallBindings() {
 
-        if(gameType == GameType.SERVER) {
-            Container.Inject(serverInstaller);
-            serverInstaller.InstallBindings();
-        }
-        else if(gameType == GameType.CLIENT) {
-            Container.Inject(clientInstaller);
-            clientInstaller.InstallBindings();
-        }
+        // if(gameType == GameType.SERVER) {
+        //     Container.Inject(serverInstaller);
+        //     serverInstaller.InstallBindings();
+        // }
+        // else if(gameType == GameType.CLIENT) {
+        //     Container.Inject(clientInstaller);
+        //     clientInstaller.InstallBindings();
+        // }
     }
 
-    public void RunServer() {
-        #if UNITY_EDITOR
-        gameType = GameType.SERVER;
-        UnityEditor.EditorApplication.isPlaying = true;
-        #endif
-    }
+    // public void RunServer() {
+    //     #if UNITY_EDITOR
+    //     gameType = GameType.SERVER;
+    //     UnityEditor.EditorApplication.isPlaying = true;
+    //     #endif
+    // }
 
-    public void RunClient() {
-        #if UNITY_EDITOR
-        gameType = GameType.CLIENT;
-        UnityEditor.EditorApplication.isPlaying = true;
-        #endif
-    }
+    // public void RunClient() {
+    //     #if UNITY_EDITOR
+    //     gameType = GameType.CLIENT;
+    //     UnityEditor.EditorApplication.isPlaying = true;
+    //     #endif
+    // }
 }

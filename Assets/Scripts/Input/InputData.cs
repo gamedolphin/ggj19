@@ -18,11 +18,15 @@ public struct InputData {
     [Index(3)]
     public bool Down;
 
-    public InputData (bool right, bool left, bool up, bool down) {
+    [Index(4)]
+    public long Index;
+
+    public InputData (bool right, bool left, bool up, bool down, long index) {
         Right = right;
         Left = left;
         Up = up;
         Down = down;
+        Index = index;
     }
 
 

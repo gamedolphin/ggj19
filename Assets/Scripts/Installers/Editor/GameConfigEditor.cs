@@ -9,15 +9,15 @@ public class GameConfigEditor : Editor
     {
         DrawDefaultInspector();
 
-        GameConfig myScript = (GameConfig)target;
-        if(GUILayout.Button("Run Server"))
-        {
-            myScript.RunServer();
-        }
+        // GameConfig myScript = (GameConfig)target;
+        // if(GUILayout.Button("Run Server"))
+        // {
+        //     myScript.RunServer();
+        // }
 
-        if(GUILayout.Button("Run Client"))
-        {
-            myScript.RunClient();
-        }
+        // if(GUILayout.Button("Run Client"))
+        // {
+        //     myScript.RunClient();
+        // }
     }
 }
