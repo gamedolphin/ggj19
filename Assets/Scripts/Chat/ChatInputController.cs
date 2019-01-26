@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
+using UniRx;
 
 public class ChatInputController : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class ChatInputController : MonoBehaviour
     public bool isChatActive = false;
     public InputField message;
     public Text userNameText;
+
+    [Inject] private MeteorManager meteor;
+    [SerializeField] private string roomName;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +31,11 @@ public class ChatInputController : MonoBehaviour
             if(!isChatActive && !string.IsNullOrWhiteSpace(message.text)) {
                 //send message to server
                 Debug.Log($"{message.text}");
+                meteor.SendChat(message.text, roomName)
+                    .TakeUntilDestroy(this)
+                    .Subscribe(_ => {
+                            Debug.Log($"SENT {_}");
+                        });
             }
             else if (isChatActive) {
                 message.ActivateInputField();

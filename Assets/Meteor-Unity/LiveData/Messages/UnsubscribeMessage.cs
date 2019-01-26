@@ -1,15 +1,14 @@
 namespace Meteor.Internal
 {
-	internal class UnsubscribeMessage : Message
-	{
-		const string unsub = "unsub";
+    internal class UnsubscribeMessage : Message
+    {
+        const string unsub = "unsub";
 
-		string id;
+        public string id;
 
-		public UnsubscribeMessage ()
-		{
-			msg = unsub;
-		}
-	}
+        public UnsubscribeMessage ()
+        {
+            msg = unsub;
+        }
+    }
 }
-
