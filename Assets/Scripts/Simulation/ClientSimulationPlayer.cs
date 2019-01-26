@@ -21,13 +21,12 @@ public class ClientSimulationPlayer : ClientSimulationEntity {
             var inputSlot = (serverIndex+i) % 1024;
             var currentInput = inputHandler.inputList[inputSlot];
             float x = currentInput.Left ? -1 : currentInput.Right ? 1 : 0;
-            float y = currentInput.Up ? -1 : currentInput.Down ? 1 : 0;
+            float y = currentInput.Up ? 1 : currentInput.Down ? -1 : 0;
             var direction = new Vector3(x,0,y);
             pos = (pos + direction.normalized * speed * Time.fixedDeltaTime);
+            rBody.MovePosition(pos);
         }
-
         rBody.MovePosition(pos);
-
     }
 
     public override void UpdateEntityState(PlayerState state) {

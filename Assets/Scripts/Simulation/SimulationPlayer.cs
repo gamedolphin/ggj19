@@ -74,7 +74,7 @@ public class SimulationPlayer : MonoBehaviour {
     public void UpdateInput(InputData inputData) {
         currentInput = inputData;
         float x = currentInput.Left ? -1 : currentInput.Right ? 1 : 0;
-        float y = currentInput.Up ? -1 : currentInput.Down ? 1 : 0;
+        float y = currentInput.Up ? 1 : currentInput.Down ? -1 : 0;
         var direction = new Vector3(x,0,y);
         rBody.MovePosition(rBody.position + direction.normalized * speed * Time.fixedDeltaTime);
         Index = currentInput.Index;
