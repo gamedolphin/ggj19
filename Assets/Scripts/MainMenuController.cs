@@ -9,7 +9,7 @@ public class MainMenuController : MonoBehaviour {
 
     public Button playButton;
     public InputField userNameField;
-    public string MainScene;
+    public string LobbyScene;
 
     private void Awake() {
         userNameField.text = PlayerPrefs.GetString(userName);
@@ -35,7 +35,7 @@ public class MainMenuController : MonoBehaviour {
                 if (!string.IsNullOrWhiteSpace(userNameField.text)) {
                     playButton.interactable = false;
                     PlayerPrefs.SetString(userName, userNameField.text);
-                    SceneManager.LoadSceneAsync(MainScene);
+                    SceneManager.LoadSceneAsync(LobbyScene);
                 }
             });
     }
