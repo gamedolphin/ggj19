@@ -51,16 +51,6 @@ public class ClientSimulationPlayer : ClientSimulationEntity {
         rBody.MovePosition(pos);
     }
 
-     //Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
-        if (m_started)
-            //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-            Gizmos.DrawWireCube(transform.position, transform.localScale * (1 + speed*Time.fixedDeltaTime));
-    }
-
     public override void UpdateEntityState(PlayerState state) {
         base.UpdateEntityState(state);
         long arrIndex = state.Index % 1024;

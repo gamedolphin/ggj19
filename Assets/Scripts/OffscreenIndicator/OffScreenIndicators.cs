@@ -6,7 +6,11 @@ namespace OffScreenIndicator
 {
     public class OffScreenIndicators : MonoBehaviour
     {
-        private Camera mainCamera;
+        private Camera mainCamera {
+            get {
+                return Camera.main;
+            }
+        }
         private Vector3 screenCentre;
         private Vector3 screenBounds;
         private string targetTag = "Target";
@@ -16,7 +20,6 @@ namespace OffScreenIndicator
 
         void Awake()
         {
-            mainCamera = Camera.main;
             screenCentre = new Vector3(Screen.width, Screen.height, 0) / 2;
             screenBounds = screenCentre * screenBoundOffset;
         }
@@ -33,6 +36,8 @@ namespace OffScreenIndicator
 
         void Paint()
         {
+            Debug.Log(mainCamera);
+            if(mainCamera == null) return;
             GameObject[] objects = GameObject.FindGameObjectsWithTag(targetTag);
             List<Target> targets = new List<Target>();
             objects.ToList().ForEach(obj =>
@@ -52,7 +57,7 @@ namespace OffScreenIndicator
                 {
                     screenPosition.z = 0;
                     indicator = BoxObjectPool.current.GetPooledObject();
-                    indicator.SetDistanceText(distanceFromCamera);
+                    indicator.SetDistanceText(float.MinValue);
                 }
                 else if (target.NeedArrowIndicator && !isTargetVisible)
                 {
@@ -60,14 +65,14 @@ namespace OffScreenIndicator
                     OffScreenIndicatorCore.GetArrowIndicatorPositionAndAngle(ref screenPosition, ref angle, screenCentre, screenBounds);
                     indicator = ArrowObjectPool.current.GetPooledObject();
                     indicator.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
-                    indicator.SetDistanceText(float.MinValue);
+                    indicator.SetDistanceText(distanceFromCamera);
                 }
                 if (indicator)
                 {
                     indicator.SetImageColor(target.TargetColor);
                     indicator.transform.position = screenPosition;
                     indicator.SetTextRotation(Quaternion.identity);
-                    indicator.Activate(true); 
+                    indicator.Activate(true);
                 }
             }
         }
