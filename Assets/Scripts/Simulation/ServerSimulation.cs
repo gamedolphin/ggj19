@@ -47,8 +47,8 @@ namespace Server {
             enemyFactory = eFac;
         }
 
-        public void AddPlayer(int hashcode, NetPeer peer) {
-            var player = simFactory.Create(hashcode);
+        public void AddPlayer(int hashcode, string Name, NetPeer peer) {
+            var player = simFactory.Create(hashcode, Name);
             var randomTransform = spawnPoints[Random.RandomRange(0, spawnPoints.Count - 1)];
             Debug.Log("SPAWING AT "+randomTransform.position);
             player.transform.position = randomTransform.position;

@@ -31,9 +31,11 @@ namespace Client {
             client.Start();
             client.UpdateTime = 15;
             int i = Guid.NewGuid().GetHashCode();
+            string name = PlayerPrefs.GetString("userName");
             NetDataWriter writer = new NetDataWriter();
             writer.Put("hashcode");
             writer.Put(i);
+            writer.Put(name);
             clientSim.SetOwnId(i);
             var p = client.Connect(settings.Ip, settings.Port, writer);
         }

@@ -65,7 +65,6 @@ namespace Server  {
         public void OnPeerConnected(NetPeer peer) {
             Debug.Log("[SERVER] We have new peer " + peer.GetHashCode());
             clientList.Add(peer);
-            serverSimulation.AddPlayer((int)peer.Tag, peer);
         }
 
         public void OnNetworkError(IPEndPoint endPoint, SocketError socketErrorCode) {
@@ -85,7 +84,10 @@ namespace Server  {
             if(key != "hashcode")
                 request.Reject();
             var peer = request.Accept();
-            peer.Tag = dataReader.GetInt();
+            int hashcode = dataReader.GetInt();
+            string name = dataReader.GetString();
+            peer.Tag = hashcode;
+            serverSimulation.AddPlayer(hashcode, name, peer);
         }
 
         public void OnPeerDisconnected(NetPeer peer, DisconnectInfo disconnectInfo) {

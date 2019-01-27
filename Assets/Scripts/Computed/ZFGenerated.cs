@@ -378,6 +378,8 @@ namespace ZeroFormatter.DynamicObjectSegments
         readonly Formatter<TTypeResolver, int> formatter0;
         readonly Formatter<TTypeResolver, global::Vector3Sim> formatter1;
         readonly Formatter<TTypeResolver, long> formatter2;
+        readonly Formatter<TTypeResolver, string> formatter3;
+        readonly Formatter<TTypeResolver, int> formatter4;
         
         public override bool NoUseDirtyTracker
         {
@@ -386,6 +388,8 @@ namespace ZeroFormatter.DynamicObjectSegments
                 return formatter0.NoUseDirtyTracker
                     && formatter1.NoUseDirtyTracker
                     && formatter2.NoUseDirtyTracker
+                    && formatter3.NoUseDirtyTracker
+                    && formatter4.NoUseDirtyTracker
                 ;
             }
         }
@@ -395,6 +399,8 @@ namespace ZeroFormatter.DynamicObjectSegments
             formatter0 = Formatter<TTypeResolver, int>.Default;
             formatter1 = Formatter<TTypeResolver, global::Vector3Sim>.Default;
             formatter2 = Formatter<TTypeResolver, long>.Default;
+            formatter3 = Formatter<TTypeResolver, string>.Default;
+            formatter4 = Formatter<TTypeResolver, int>.Default;
             
         }
 
@@ -409,6 +415,8 @@ namespace ZeroFormatter.DynamicObjectSegments
             offset += formatter0.Serialize(ref bytes, offset, value.Hashcode);
             offset += formatter1.Serialize(ref bytes, offset, value.Position);
             offset += formatter2.Serialize(ref bytes, offset, value.Index);
+            offset += formatter3.Serialize(ref bytes, offset, value.Name);
+            offset += formatter4.Serialize(ref bytes, offset, value.Health);
             return offset - startOffset;
         }
 
@@ -425,8 +433,14 @@ namespace ZeroFormatter.DynamicObjectSegments
             var item2 = formatter2.Deserialize(ref bytes, offset, tracker, out size);
             offset += size;
             byteSize += size;
+            var item3 = formatter3.Deserialize(ref bytes, offset, tracker, out size);
+            offset += size;
+            byteSize += size;
+            var item4 = formatter4.Deserialize(ref bytes, offset, tracker, out size);
+            offset += size;
+            byteSize += size;
             
-            return new global::PlayerState(item0, item1, item2);
+            return new global::PlayerState(item0, item1, item2, item3, item4);
         }
     }
 

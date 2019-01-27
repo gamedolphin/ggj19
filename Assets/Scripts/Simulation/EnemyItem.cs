@@ -34,4 +34,11 @@ public class EnemyItem : MonoBehaviour {
         enemyConfig.PlaceSelf();
         Id = id;
     }
+
+    public void OnTriggerEnter(Collider collider) {
+        var damagable = collider.GetComponent<IDamagable>();
+        if(damagable != null) {
+            damagable.GetHit(10);
+        }
+    }
 }

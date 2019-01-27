@@ -15,6 +15,7 @@ public class ClientSimulationPlayer : ClientSimulationEntity {
     [SerializeField] private LayerMask collisionMask;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform model;
+    [SerializeField] private Slider slider;
 
     private RaycastHit m_Hit;
     private bool m_HitDetect;
@@ -66,6 +67,8 @@ public class ClientSimulationPlayer : ClientSimulationEntity {
         base.UpdateEntityState(state);
         long arrIndex = state.Index % 1024;
         states[arrIndex] = state;
+        name.text = state.Name;
         latest = state;
+        slider.value = state.Health;
     }
 }

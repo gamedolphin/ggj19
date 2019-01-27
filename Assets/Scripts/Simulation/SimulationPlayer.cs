@@ -30,11 +30,17 @@ public struct PlayerState {
     public Vector3Sim Position;
     [Index(2)]
     public long Index;
+    [Index(3)]
+    public string Name;
+    [Index(4)]
+    public int Health;
 
-    public PlayerState(int hashcode, Vector3Sim pos, long index) {
+    public PlayerState(int hashcode, Vector3Sim pos, long index, string name, int health) {
         Hashcode = hashcode;
         Position = pos;
         Index = index;
+        Name = name;
+        Health = health;
     }
 
     public Vector3 GetPosition() {
@@ -42,11 +48,14 @@ public struct PlayerState {
     }
 }
 
+public interface IDamagable {
+    void GetHit(int dmg);
+}
 
 [RequireComponent(typeof(Rigidbody))]
-public class SimulationPlayer : MonoBehaviour {
+public class SimulationPlayer : MonoBehaviour, IDamagable {
 
-    public class Factory : PlaceholderFactory<int,SimulationPlayer> {
+    public class Factory : PlaceholderFactory<int, string,SimulationPlayer> {
     }
 
     private Rigidbody rBody;
@@ -56,17 +65,20 @@ public class SimulationPlayer : MonoBehaviour {
 
     public int Hashcode;
     public long Index;
+    public string Name;
+    public int Health = 100;
 
     private List<IInteractible> interactibles = new List<IInteractible>();
 
     [Inject]
-    public void Construct(int hashcode) {
+    public void Construct(int hashcode, string name) {
         Hashcode = hashcode;
+        Name = name;
     }
 
     public PlayerState GetPlayerState() {
         var pos = rBody.position;
-        return new PlayerState(Hashcode, new Vector3Sim(pos.x, pos.y, pos.z), Index);
+        return new PlayerState(Hashcode, new Vector3Sim(pos.x, pos.y, pos.z), Index, Name, Health);
     }
 
     private void Awake() {
@@ -84,6 +96,10 @@ public class SimulationPlayer : MonoBehaviour {
         if(currentInput.Interact) {
             InteractWithItems();
         }
+    }
+
+    public void GetHit(int damage) {
+        Health-= damage;
     }
 
     private void InteractWithItems() {
