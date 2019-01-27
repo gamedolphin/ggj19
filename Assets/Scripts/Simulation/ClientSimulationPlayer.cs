@@ -13,6 +13,7 @@ public class ClientSimulationPlayer : ClientSimulationEntity {
     [SerializeField] private float smoothing = 1;
     [SerializeField] private TextMeshPro name;
     [SerializeField] private LayerMask collisionMask;
+    [SerializeField] private Animator animator;
 
     private RaycastHit m_Hit;
     private bool m_HitDetect;
@@ -30,6 +31,7 @@ public class ClientSimulationPlayer : ClientSimulationEntity {
          m_MaxDistance = 300.0f;
         m_Collider = GetComponent<BoxCollider>();
         m_started = true;
+        animator.SetFloat("Speed", 0f);
     }
 
     public override void FixedUpdate() {
@@ -47,6 +49,11 @@ public class ClientSimulationPlayer : ClientSimulationEntity {
             if(!Physics.CheckBox(pos + mov, transform.localScale/4, Quaternion.identity, collisionMask)) {
                 pos = (pos + mov);
             }
+        }
+        if(pos != targetPos) {
+            animator.SetFloat("Speed", 1f);
+        } else {
+            animator.SetFloat("Speed", 0f);
         }
         rBody.MovePosition(pos);
     }
