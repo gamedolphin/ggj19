@@ -12,6 +12,8 @@ public class WorldState {
     public virtual IList<PlayerState> PlayerList { get; set; }
     [Index(1)]
     public virtual IList<QuestInfo> QuestList { get; set; }
+    [Index(2)]
+    public virtual IList<EnemyInfo> EnemyList {get; set; }
 }
 
 namespace Server {
@@ -24,21 +26,25 @@ namespace Server {
         }
 
         private int totalQuestItems = 0;
+        private int totalEnemyItems = 0;
 
         public Dictionary<int, SimulationPlayer> playerDic = new Dictionary<int, SimulationPlayer>();
         public List<SimulationPlayer> playerList =  new List<SimulationPlayer>();
         public List<QuestItem> questList = new List<QuestItem>();
+        public List<EnemyItem> enemyList = new List<EnemyItem>();
 
         private SimulationPlayer.Factory simFactory;
         private QuestItem.Factory questFactory;
+        private EnemyItem.Factory enemyFactory;
         private List<Transform> spawnPoints;
 
         private Queue<InputInfo> networkInput = new Queue<InputInfo>();
 
-        public ServerSimulation(SimulationPlayer.Factory playerFactory, QuestItem.Factory qFac, List<Transform> spP) {
+        public ServerSimulation(SimulationPlayer.Factory playerFactory, QuestItem.Factory qFac, EnemyItem.Factory eFac, List<Transform> spP) {
             simFactory = playerFactory;
             spawnPoints = spP;
             questFactory = qFac;
+            enemyFactory = eFac;
         }
 
         public void AddPlayer(int hashcode, NetPeer peer) {
@@ -80,12 +86,20 @@ namespace Server {
             questList.Remove(item);
         }
 
+        public void SpawnEnemy(EnemyItem enemyPrefab) {
+            var enemy = enemyFactory.Create(enemyPrefab);
+            enemy.PlaceSelf(totalEnemyItems++);
+            enemyList.Add(enemy);
+        }
+
         public WorldState GetWorldState () {
             var playerStates = playerList.Select(p => p.GetPlayerState());
             var questStates = questList.Select(q => q.GetQuestState());
+            var enemyStates = enemyList.Select(q => q.GetEnemyState());
             return new WorldState {
                 PlayerList = playerStates.ToArray(),
-                QuestList = questStates.ToArray()
+                QuestList = questStates.ToArray(),
+                EnemyList = enemyStates.ToArray()
             };
         }
     }

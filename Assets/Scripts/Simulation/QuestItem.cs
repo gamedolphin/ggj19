@@ -25,7 +25,7 @@ public class QuestItem : MonoBehaviour, IInteractible {
     }
 
     public void PlaceSelf (int id) {
-        transform.position = new Vector3(Random.Range(0,100), 0, Random.Range(0,100));
+        transform.position = new Vector3(Random.Range(10,140), 0, Random.Range(10,140));
         Id = id;
     }
 

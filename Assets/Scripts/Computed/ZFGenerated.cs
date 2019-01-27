@@ -116,12 +116,18 @@ namespace ZeroFormatter
                 ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::QuestInfo?>.Register(new global::ZeroFormatter.Formatters.NullableStructFormatter<ZeroFormatter.Formatters.DefaultResolver, global::QuestInfo>(structFormatter));
             }
             {
+                var structFormatter = new ZeroFormatter.DynamicObjectSegments.EnemyInfoFormatter<ZeroFormatter.Formatters.DefaultResolver>();
+                ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::EnemyInfo>.Register(structFormatter);
+                ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::EnemyInfo?>.Register(new global::ZeroFormatter.Formatters.NullableStructFormatter<ZeroFormatter.Formatters.DefaultResolver, global::EnemyInfo>(structFormatter));
+            }
+            {
                 var structFormatter = new ZeroFormatter.DynamicObjectSegments.InputDataFormatter<ZeroFormatter.Formatters.DefaultResolver>();
                 ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::InputData>.Register(structFormatter);
                 ZeroFormatter.Formatters.Formatter<ZeroFormatter.Formatters.DefaultResolver, global::InputData?>.Register(new global::ZeroFormatter.Formatters.NullableStructFormatter<ZeroFormatter.Formatters.DefaultResolver, global::InputData>(structFormatter));
             }
             // Unions
             // Generics
+            ZeroFormatter.Formatters.Formatter.RegisterList<ZeroFormatter.Formatters.DefaultResolver, global::EnemyInfo>();
             ZeroFormatter.Formatters.Formatter.RegisterList<ZeroFormatter.Formatters.DefaultResolver, global::PlayerState>();
             ZeroFormatter.Formatters.Formatter.RegisterList<ZeroFormatter.Formatters.DefaultResolver, global::QuestInfo>();
         }
@@ -166,11 +172,12 @@ namespace ZeroFormatter.DynamicObjectSegments
             {
                 var startOffset = offset;
 
-                offset += (8 + 4 * (1 + 1));
+                offset += (8 + 4 * (2 + 1));
                 offset += ObjectSegmentHelper.SerializeFromFormatter<TTypeResolver, global::System.Collections.Generic.IList<global::PlayerState>>(ref bytes, startOffset, offset, 0, value.PlayerList);
                 offset += ObjectSegmentHelper.SerializeFromFormatter<TTypeResolver, global::System.Collections.Generic.IList<global::QuestInfo>>(ref bytes, startOffset, offset, 1, value.QuestList);
+                offset += ObjectSegmentHelper.SerializeFromFormatter<TTypeResolver, global::System.Collections.Generic.IList<global::EnemyInfo>>(ref bytes, startOffset, offset, 2, value.EnemyList);
 
-                return ObjectSegmentHelper.WriteSize(ref bytes, startOffset, offset, 1);
+                return ObjectSegmentHelper.WriteSize(ref bytes, startOffset, offset, 2);
             }
         }
 
@@ -189,7 +196,7 @@ namespace ZeroFormatter.DynamicObjectSegments
     public class WorldStateObjectSegment<TTypeResolver> : global::WorldState, IZeroFormatterSegment
         where TTypeResolver : ITypeResolver, new()
     {
-        static readonly int[] __elementSizes = new int[]{ 0, 0 };
+        static readonly int[] __elementSizes = new int[]{ 0, 0, 0 };
 
         readonly ArraySegment<byte> __originalBytes;
         readonly global::ZeroFormatter.DirtyTracker __tracker;
@@ -198,6 +205,7 @@ namespace ZeroFormatter.DynamicObjectSegments
 
         global::System.Collections.Generic.IList<global::PlayerState> _PlayerList;
         global::System.Collections.Generic.IList<global::QuestInfo> _QuestList;
+        global::System.Collections.Generic.IList<global::EnemyInfo> _EnemyList;
 
         // 0
         public override global::System.Collections.Generic.IList<global::PlayerState> PlayerList
@@ -227,6 +235,20 @@ namespace ZeroFormatter.DynamicObjectSegments
             }
         }
 
+        // 2
+        public override global::System.Collections.Generic.IList<global::EnemyInfo> EnemyList
+        {
+            get
+            {
+                return _EnemyList;
+            }
+            set
+            {
+                __tracker.Dirty();
+                _EnemyList = value;
+            }
+        }
+
 
         public WorldStateObjectSegment(global::ZeroFormatter.DirtyTracker dirtyTracker, ArraySegment<byte> originalBytes)
         {
@@ -236,10 +258,11 @@ namespace ZeroFormatter.DynamicObjectSegments
             this.__tracker = dirtyTracker = dirtyTracker.CreateChild();
             this.__binaryLastIndex = BinaryUtil.ReadInt32(ref __array, originalBytes.Offset + 4);
 
-            this.__extraFixedBytes = ObjectSegmentHelper.CreateExtraFixedBytes(this.__binaryLastIndex, 1, __elementSizes);
+            this.__extraFixedBytes = ObjectSegmentHelper.CreateExtraFixedBytes(this.__binaryLastIndex, 2, __elementSizes);
 
             _PlayerList = ObjectSegmentHelper.DeserializeSegment<TTypeResolver, global::System.Collections.Generic.IList<global::PlayerState>>(originalBytes, 0, __binaryLastIndex, __tracker);
             _QuestList = ObjectSegmentHelper.DeserializeSegment<TTypeResolver, global::System.Collections.Generic.IList<global::QuestInfo>>(originalBytes, 1, __binaryLastIndex, __tracker);
+            _EnemyList = ObjectSegmentHelper.DeserializeSegment<TTypeResolver, global::System.Collections.Generic.IList<global::EnemyInfo>>(originalBytes, 2, __binaryLastIndex, __tracker);
         }
 
         public bool CanDirectCopy()
@@ -257,12 +280,13 @@ namespace ZeroFormatter.DynamicObjectSegments
             if (__extraFixedBytes != null || __tracker.IsDirty)
             {
                 var startOffset = offset;
-                offset += (8 + 4 * (1 + 1));
+                offset += (8 + 4 * (2 + 1));
 
                 offset += ObjectSegmentHelper.SerializeSegment<TTypeResolver, global::System.Collections.Generic.IList<global::PlayerState>>(ref targetBytes, startOffset, offset, 0, _PlayerList);
                 offset += ObjectSegmentHelper.SerializeSegment<TTypeResolver, global::System.Collections.Generic.IList<global::QuestInfo>>(ref targetBytes, startOffset, offset, 1, _QuestList);
+                offset += ObjectSegmentHelper.SerializeSegment<TTypeResolver, global::System.Collections.Generic.IList<global::EnemyInfo>>(ref targetBytes, startOffset, offset, 2, _EnemyList);
 
-                return ObjectSegmentHelper.WriteSize(ref targetBytes, startOffset, offset, 1);
+                return ObjectSegmentHelper.WriteSize(ref targetBytes, startOffset, offset, 2);
             }
             else
             {
@@ -468,6 +492,64 @@ namespace ZeroFormatter.DynamicObjectSegments
             byteSize += size;
             
             return new global::QuestInfo(item0, item1, item2, item3);
+        }
+    }
+
+    public class EnemyInfoFormatter<TTypeResolver> : Formatter<TTypeResolver, global::EnemyInfo>
+        where TTypeResolver : ITypeResolver, new()
+    {
+        readonly Formatter<TTypeResolver, string> formatter0;
+        readonly Formatter<TTypeResolver, global::Vector3Sim> formatter1;
+        readonly Formatter<TTypeResolver, int> formatter2;
+        
+        public override bool NoUseDirtyTracker
+        {
+            get
+            {
+                return formatter0.NoUseDirtyTracker
+                    && formatter1.NoUseDirtyTracker
+                    && formatter2.NoUseDirtyTracker
+                ;
+            }
+        }
+
+        public EnemyInfoFormatter()
+        {
+            formatter0 = Formatter<TTypeResolver, string>.Default;
+            formatter1 = Formatter<TTypeResolver, global::Vector3Sim>.Default;
+            formatter2 = Formatter<TTypeResolver, int>.Default;
+            
+        }
+
+        public override int? GetLength()
+        {
+            return null;
+        }
+
+        public override int Serialize(ref byte[] bytes, int offset, global::EnemyInfo value)
+        {
+            var startOffset = offset;
+            offset += formatter0.Serialize(ref bytes, offset, value.EnemyName);
+            offset += formatter1.Serialize(ref bytes, offset, value.Position);
+            offset += formatter2.Serialize(ref bytes, offset, value.Id);
+            return offset - startOffset;
+        }
+
+        public override global::EnemyInfo Deserialize(ref byte[] bytes, int offset, global::ZeroFormatter.DirtyTracker tracker, out int byteSize)
+        {
+            byteSize = 0;
+            int size;
+            var item0 = formatter0.Deserialize(ref bytes, offset, tracker, out size);
+            offset += size;
+            byteSize += size;
+            var item1 = formatter1.Deserialize(ref bytes, offset, tracker, out size);
+            offset += size;
+            byteSize += size;
+            var item2 = formatter2.Deserialize(ref bytes, offset, tracker, out size);
+            offset += size;
+            byteSize += size;
+            
+            return new global::EnemyInfo(item0, item1, item2);
         }
     }
 
