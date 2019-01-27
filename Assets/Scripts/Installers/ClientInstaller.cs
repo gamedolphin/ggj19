@@ -17,5 +17,6 @@ public class ClientInstaller : ScriptableObjectInstaller<ClientInstaller> {
         Container.BindInstance(networkSettings);
         Container.BindInterfacesAndSelfTo<ClientNetworkManager>().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<InputHandler>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<InventorySystem>().AsSingle().NonLazy();
     }
 }
