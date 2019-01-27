@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 466498347394993968}
   - component: {fileID: 4577990862394581117}
   - component: {fileID: 8650365950577158321}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OtherPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82838ca940fe6f948a6b250778a33a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
+  Hashcode: 0
   speed: 5
   targetPos: {x: 0, y: 0, z: 0}
   rBody: {fileID: 0}
