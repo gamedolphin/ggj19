@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1027023930876444927}
   m_Layer: 9
   m_Name: QuestItem1
-  m_TagString: Untagged
+  m_TagString: Interactible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

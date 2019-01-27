@@ -2,8 +2,12 @@ using UnityEngine;
 using Zenject;
 using Server;
 
+public interface IInteractible {
+    void Interact(string tag);
+}
+
 [RequireComponent(typeof(BoxCollider))]
-public class QuestItem : MonoBehaviour {
+public class QuestItem : MonoBehaviour, IInteractible {
 
     public class Factory : PlaceholderFactory<UnityEngine.Object, QuestItem>
     {
@@ -23,6 +27,12 @@ public class QuestItem : MonoBehaviour {
     public void PlaceSelf (int id) {
         transform.position = new Vector3(Random.Range(0,100), 0, Random.Range(0,100));
         Id = id;
+    }
+
+    public void Interact(string tag) {
+        if(tag == "Player") {
+            LoseHealth();
+        }
     }
 
     public void LoseHealth() {

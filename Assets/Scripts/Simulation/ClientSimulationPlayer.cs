@@ -12,11 +12,13 @@ public class ClientSimulationPlayer : ClientSimulationEntity {
 
     [SerializeField] private float smoothing = 1;
     [SerializeField] private TextMeshPro name;
+    [SerializeField] private LayerMask collisionMask;
 
     private RaycastHit m_Hit;
     private bool m_HitDetect;
     private float m_MaxDistance;
     private Collider m_Collider;
+    private bool m_started;
 
 
     private PlayerState[] states = new PlayerState[1024];
@@ -27,6 +29,7 @@ public class ClientSimulationPlayer : ClientSimulationEntity {
 
          m_MaxDistance = 300.0f;
         m_Collider = GetComponent<BoxCollider>();
+        m_started = true;
     }
 
     public override void FixedUpdate() {
@@ -41,13 +44,21 @@ public class ClientSimulationPlayer : ClientSimulationEntity {
             float y = currentInput.Up ? 1 : currentInput.Down ? -1 : 0;
             direction = new Vector3(x,0,y);
             var mov = direction.normalized * speed * Time.fixedDeltaTime;
-            // m_HitDetect = Physics.BoxCast(m_Collider.bounds.center, transform.localScale, direction, out m_Hit, transform.rotation, speed * Time.fixedDeltaTime);
-            // if(!m_HitDetect) {
-
-            // }
-            pos = (pos + mov);
+            if(!Physics.CheckBox(pos + mov, transform.localScale/4, Quaternion.identity, collisionMask)) {
+                pos = (pos + mov);
+            }
         }
         rBody.MovePosition(pos);
+    }
+
+     //Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
+        if (m_started)
+            //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
+            Gizmos.DrawWireCube(transform.position, transform.localScale * (1 + speed*Time.fixedDeltaTime));
     }
 
     public override void UpdateEntityState(PlayerState state) {

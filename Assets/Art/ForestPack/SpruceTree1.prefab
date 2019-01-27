@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3562636730831018471}
   - component: {fileID: 8206681464398494150}
   - component: {fileID: 1805957163}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpruceTree1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

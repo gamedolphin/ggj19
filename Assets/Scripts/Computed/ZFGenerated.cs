@@ -478,7 +478,8 @@ namespace ZeroFormatter.DynamicObjectSegments
         readonly Formatter<TTypeResolver, bool> formatter1;
         readonly Formatter<TTypeResolver, bool> formatter2;
         readonly Formatter<TTypeResolver, bool> formatter3;
-        readonly Formatter<TTypeResolver, long> formatter4;
+        readonly Formatter<TTypeResolver, bool> formatter4;
+        readonly Formatter<TTypeResolver, long> formatter5;
         
         public override bool NoUseDirtyTracker
         {
@@ -489,6 +490,7 @@ namespace ZeroFormatter.DynamicObjectSegments
                     && formatter2.NoUseDirtyTracker
                     && formatter3.NoUseDirtyTracker
                     && formatter4.NoUseDirtyTracker
+                    && formatter5.NoUseDirtyTracker
                 ;
             }
         }
@@ -499,24 +501,26 @@ namespace ZeroFormatter.DynamicObjectSegments
             formatter1 = Formatter<TTypeResolver, bool>.Default;
             formatter2 = Formatter<TTypeResolver, bool>.Default;
             formatter3 = Formatter<TTypeResolver, bool>.Default;
-            formatter4 = Formatter<TTypeResolver, long>.Default;
+            formatter4 = Formatter<TTypeResolver, bool>.Default;
+            formatter5 = Formatter<TTypeResolver, long>.Default;
             
         }
 
         public override int? GetLength()
         {
-            return 12;
+            return 13;
         }
 
         public override int Serialize(ref byte[] bytes, int offset, global::InputData value)
         {
-            BinaryUtil.EnsureCapacity(ref bytes, offset, 12);
+            BinaryUtil.EnsureCapacity(ref bytes, offset, 13);
             var startOffset = offset;
             offset += formatter0.Serialize(ref bytes, offset, value.Right);
             offset += formatter1.Serialize(ref bytes, offset, value.Left);
             offset += formatter2.Serialize(ref bytes, offset, value.Up);
             offset += formatter3.Serialize(ref bytes, offset, value.Down);
-            offset += formatter4.Serialize(ref bytes, offset, value.Index);
+            offset += formatter4.Serialize(ref bytes, offset, value.Interact);
+            offset += formatter5.Serialize(ref bytes, offset, value.Index);
             return offset - startOffset;
         }
 
@@ -539,8 +543,11 @@ namespace ZeroFormatter.DynamicObjectSegments
             var item4 = formatter4.Deserialize(ref bytes, offset, tracker, out size);
             offset += size;
             byteSize += size;
+            var item5 = formatter5.Deserialize(ref bytes, offset, tracker, out size);
+            offset += size;
+            byteSize += size;
             
-            return new global::InputData(item0, item1, item2, item3, item4);
+            return new global::InputData(item0, item1, item2, item3, item4, item5);
         }
     }
 

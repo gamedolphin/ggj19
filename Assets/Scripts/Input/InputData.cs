@@ -19,13 +19,17 @@ public struct InputData {
     public bool Down;
 
     [Index(4)]
+    public bool Interact;
+
+    [Index(5)]
     public long Index;
 
-    public InputData (bool right, bool left, bool up, bool down, long index) {
+    public InputData (bool right, bool left, bool up, bool down, bool interact, long index) {
         Right = right;
         Left = left;
         Up = up;
         Down = down;
+        Interact = interact;
         Index = index;
     }
 

@@ -57,6 +57,8 @@ public class SimulationPlayer : MonoBehaviour {
     public int Hashcode;
     public long Index;
 
+    private List<IInteractible> interactibles = new List<IInteractible>();
+
     [Inject]
     public void Construct(int hashcode) {
         Hashcode = hashcode;
@@ -78,5 +80,33 @@ public class SimulationPlayer : MonoBehaviour {
         var direction = new Vector3(x,0,y);
         rBody.MovePosition(rBody.position + direction.normalized * speed * Time.fixedDeltaTime);
         Index = currentInput.Index;
+
+        if(currentInput.Interact) {
+            InteractWithItems();
+        }
+    }
+
+    private void InteractWithItems() {
+        interactibles.ForEach(item => item.Interact("Player"));
+    }
+
+    public void OnTriggerEnter(Collider collider) {
+
+        var interactible = collider.GetComponent<IInteractible>();
+
+        if(interactible == null) return;
+
+        interactibles.Add(interactible);
+
+    }
+
+    public void OnTriggerExit(Collider collider) {
+        var interactible = collider.GetComponent<IInteractible>();
+
+        if(interactible == null) return;
+
+        if(interactibles.Contains(interactible)) {
+            interactibles.Remove(interactible);
+        }
     }
 }

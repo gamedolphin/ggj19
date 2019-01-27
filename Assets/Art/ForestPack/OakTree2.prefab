@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5986651523144389344}
   - component: {fileID: 7788353133436850842}
   - component: {fileID: 1540183139}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OakTree2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

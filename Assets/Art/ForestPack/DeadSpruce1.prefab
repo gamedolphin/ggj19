@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6317497975887594428}
   - component: {fileID: 1046785851865925530}
   - component: {fileID: 600190761}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DeadSpruce1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

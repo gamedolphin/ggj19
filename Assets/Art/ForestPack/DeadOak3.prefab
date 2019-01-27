@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1302225110228475614}
   - component: {fileID: 1730646160575671494}
   - component: {fileID: 1804823016}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DeadOak3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
