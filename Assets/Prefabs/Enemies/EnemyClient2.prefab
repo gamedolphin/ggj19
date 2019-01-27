@@ -60,6 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyName: Enemy2
   Id: 0
+  playerModel: {fileID: 2808100243866313709}
 --- !u!1001 &2808100243865925967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -179,6 +180,11 @@ PrefabInstance:
       propertyPath: m_RootBone
       value: 
       objectReference: {fileID: 2808100243866313673}
+    - target: {fileID: 9500000, guid: 589de76d0347f144a9c6aaa882903d35, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 8255e16c3932f2946aea7d217220601d,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 589de76d0347f144a9c6aaa882903d35, type: 3}
 --- !u!4 &2808100243866313709 stripped
