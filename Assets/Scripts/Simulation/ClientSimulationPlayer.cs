@@ -14,6 +14,7 @@ public class ClientSimulationPlayer : ClientSimulationEntity {
     [SerializeField] private TextMeshPro name;
     [SerializeField] private LayerMask collisionMask;
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform model;
 
     private RaycastHit m_Hit;
     private bool m_HitDetect;
@@ -55,6 +56,9 @@ public class ClientSimulationPlayer : ClientSimulationEntity {
         } else {
             animator.SetFloat("Speed", 0f);
         }
+        float step = 10*Time.fixedDeltaTime;
+        var dir = Vector3.RotateTowards(model.forward, pos - rBody.position,step, 0.0f);
+        model.rotation = Quaternion.LookRotation(dir);
         rBody.MovePosition(pos);
     }
 
