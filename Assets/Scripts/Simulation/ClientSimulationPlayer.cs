@@ -3,12 +3,15 @@ using Zenject;
 using Client;
 using UnityEngine.UI;
 using TMPro;
+using UniRx;
+using System;
 
 [RequireComponent(typeof(BoxCollider))]
 public class ClientSimulationPlayer : ClientSimulationEntity {
     public class Factory : PlaceholderFactory<int,ClientSimulationPlayer> {}
 
     [Inject] private InputHandler inputHandler;
+    [Inject] private MeteorManager meteor;
 
     [SerializeField] private float smoothing = 1;
     [SerializeField] private TextMeshPro name;
@@ -23,6 +26,8 @@ public class ClientSimulationPlayer : ClientSimulationEntity {
     private Collider m_Collider;
     private bool m_started;
 
+    [SerializeField] private TextMeshProUGUI chatText;
+
 
     private PlayerState[] states = new PlayerState[1024];
     private PlayerState latest;
@@ -34,6 +39,19 @@ public class ClientSimulationPlayer : ClientSimulationEntity {
         m_Collider = GetComponent<BoxCollider>();
         m_started = true;
         animator.SetFloat("Speed", 0f);
+        var disposable = new CompositeDisposable();
+        meteor.connected
+            .Where(c => c == true)
+            .SelectMany(c => meteor.WatchChat())
+            .Where(chat => chat.username == name.text)
+            .TakeUntilDestroy(this)
+            .Subscribe(chat => {
+                    chatText.text = chat.msg;
+                    disposable.Dispose();
+                     Observable.Timer(TimeSpan.FromSeconds(20))
+                    .Subscribe(_ => chatText.text = "").AddTo(disposable);
+                });
+
     }
 
     public override void FixedUpdate() {

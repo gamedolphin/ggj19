@@ -1,5 +1,6 @@
 using UnityEngine;
 using Zenject;
+using TMPro;
 
 public enum ClientEntityTypes {
     OWN_CHAR,

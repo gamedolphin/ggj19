@@ -5,6 +5,8 @@ using LiteNetLib;
 using Zenject;
 using ZeroFormatter;
 using System.Linq;
+using UniRx;
+using System;
 
 [ZeroFormattable]
 public class WorldState {
@@ -16,9 +18,14 @@ public class WorldState {
     public virtual IList<EnemyInfo> EnemyList {get; set; }
 }
 
+public class PlayerScore {
+    public string name;
+    public float score;
+}
+
 namespace Server {
 
-    public class ServerSimulation  : IFixedTickable  {
+    public class ServerSimulation  : IFixedTickable, IDisposable  {
 
         private struct InputInfo {
             public int Hashcode;
@@ -39,17 +46,36 @@ namespace Server {
         private List<Transform> spawnPoints;
 
         private Queue<InputInfo> networkInput = new Queue<InputInfo>();
+        private CompositeDisposable disp = new CompositeDisposable();
 
-        public ServerSimulation(SimulationPlayer.Factory playerFactory, QuestItem.Factory qFac, EnemyItem.Factory eFac, List<Transform> spP) {
+        public ServerSimulation(SimulationPlayer.Factory playerFactory, QuestItem.Factory qFac, EnemyItem.Factory eFac, List<Transform> spP, MeteorManager meteor) {
             simFactory = playerFactory;
             spawnPoints = spP;
             questFactory = qFac;
             enemyFactory = eFac;
+
+            Observable.Interval(TimeSpan.FromSeconds(5))
+                .Select(_ => {
+                        var info = playerList.Select(p => new PlayerScore {
+                                name = p.Name,
+                                score = p.Score
+                            });
+                        return info.ToList();
+                    })
+                .SelectMany(scores => {
+                        return meteor.UpdateScore(scores);
+                    })
+                .Subscribe(_ => Debug.Log(_))
+                .AddTo(disp);
+        }
+
+        public void Dispose() {
+            disp.Dispose();
         }
 
         public void AddPlayer(int hashcode, string Name, NetPeer peer) {
             var player = simFactory.Create(hashcode, Name);
-            var randomTransform = spawnPoints[Random.RandomRange(0, spawnPoints.Count - 1)];
+            var randomTransform = spawnPoints[UnityEngine.Random.RandomRange(0, spawnPoints.Count - 1)];
             Debug.Log("SPAWING AT "+randomTransform.position);
             player.transform.position = randomTransform.position;
             playerDic.Add(hashcode, player);
@@ -82,8 +108,12 @@ namespace Server {
             questList.Add(item);
         }
 
-        public void DespawnQuest (QuestItem item) {
+        public void DespawnQuest (QuestItem item, List<int> playerIds) {
             questList.Remove(item);
+
+            playerIds.ForEach(p => {
+                    playerDic[p].UpdateScore(item.Points);
+                });
         }
 
         public void SpawnEnemy(EnemyItem enemyPrefab) {

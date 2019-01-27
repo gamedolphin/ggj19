@@ -67,6 +67,7 @@ public class SimulationPlayer : MonoBehaviour, IDamagable {
     public long Index;
     public string Name;
     public int Health = 100;
+    public float Score = 0;
 
     private List<IInteractible> interactibles = new List<IInteractible>();
 
@@ -74,6 +75,7 @@ public class SimulationPlayer : MonoBehaviour, IDamagable {
     public void Construct(int hashcode, string name) {
         Hashcode = hashcode;
         Name = name;
+        Score = PlayerPrefs.GetFloat("Score"+hashcode, 0);
     }
 
     public PlayerState GetPlayerState() {
@@ -98,12 +100,27 @@ public class SimulationPlayer : MonoBehaviour, IDamagable {
         }
     }
 
+    public void UpdateScore(int inc) {
+        Score += inc;
+        PlayerPrefs.SetFloat("Score"+Hashcode, Score);
+    }
+
     public void GetHit(int damage) {
-        Health-= damage;
+        if(Health > 0) {
+            Health-= damage;
+        }
+        if(Health <= 0) {
+            Die();
+        }
+    }
+
+    public void Die() {
+        Score = 0;
+        PlayerPrefs.SetFloat("Score"+Hashcode, 0);
     }
 
     private void InteractWithItems() {
-        interactibles.ForEach(item => item.Interact("Player"));
+        interactibles.ForEach(item => item.Interact("Player", Hashcode));
     }
 
     public void OnTriggerEnter(Collider collider) {

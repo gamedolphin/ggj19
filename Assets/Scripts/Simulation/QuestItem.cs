@@ -1,9 +1,10 @@
 using UnityEngine;
 using Zenject;
 using Server;
+using System.Collections.Generic;
 
 public interface IInteractible {
-    void Interact(string tag);
+    void Interact(string tag,int id);
 }
 
 [RequireComponent(typeof(BoxCollider))]
@@ -16,9 +17,12 @@ public class QuestItem : MonoBehaviour, IInteractible {
     public string QuestName;
     public float Health;
     public int Id;
+    public int Points;
 
     [Inject] private ServerSimulation serverSim;
     [Inject] private QuestSpawner spawner;
+
+    private List<int> playerIds = new List<int>();
 
     public QuestInfo GetQuestState() {
         return new QuestInfo(QuestName, new Vector3Sim(transform.position.x, transform.position.y, transform.position.z), Health, Id);
@@ -29,9 +33,12 @@ public class QuestItem : MonoBehaviour, IInteractible {
         Id = id;
     }
 
-    public void Interact(string tag) {
+    public void Interact(string tag, int id) {
         if(tag == "Player") {
             LoseHealth();
+            if(!playerIds.Contains(id)) {
+                playerIds.Add(id);
+            }
         }
     }
 
@@ -46,7 +53,7 @@ public class QuestItem : MonoBehaviour, IInteractible {
 
     private void Die() {
         spawner.DespawnQuest(this);
-        serverSim.DespawnQuest(this);
+        serverSim.DespawnQuest(this, playerIds);
         GameObject.Destroy(gameObject);
     }
 }
