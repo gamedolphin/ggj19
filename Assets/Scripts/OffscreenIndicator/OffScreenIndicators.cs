@@ -52,6 +52,7 @@ namespace OffScreenIndicator
                 {
                     screenPosition.z = 0;
                     indicator = BoxObjectPool.current.GetPooledObject();
+                    indicator.SetDistanceText(distanceFromCamera);
                 }
                 else if (target.NeedArrowIndicator && !isTargetVisible)
                 {
@@ -59,11 +60,11 @@ namespace OffScreenIndicator
                     OffScreenIndicatorCore.GetArrowIndicatorPositionAndAngle(ref screenPosition, ref angle, screenCentre, screenBounds);
                     indicator = ArrowObjectPool.current.GetPooledObject();
                     indicator.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+                    indicator.SetDistanceText(float.MinValue);
                 }
                 if (indicator)
                 {
                     indicator.SetImageColor(target.TargetColor);
-                    indicator.SetDistanceText(distanceFromCamera);
                     indicator.transform.position = screenPosition;
                     indicator.SetTextRotation(Quaternion.identity);
                     indicator.Activate(true); 
