@@ -35,7 +35,7 @@ public class MainMenuController : MonoBehaviour {
                 if (!string.IsNullOrWhiteSpace(userNameField.text)) {
                     playButton.interactable = false;
                     PlayerPrefs.SetString(userName, userNameField.text);
-                    SceneManager.LoadSceneAsync(LobbyScene);
+                    SceneManager.LoadScene("Lobby_Client");
                 }
             });
     }
