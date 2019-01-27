@@ -81,7 +81,6 @@ public class QuestSpawner : IInitializable, IDisposable {
     }
 
     public void DespawnQuest(QuestItem item) {
-
+        QuestItemCounts[item.QuestName] -= 1;
     }
-
 }

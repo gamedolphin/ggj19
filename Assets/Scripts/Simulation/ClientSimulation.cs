@@ -9,11 +9,14 @@ namespace Client {
 
         private Dictionary<int,ClientSimulationEntity> playerDic = new Dictionary<int, ClientSimulationEntity>();
         private Dictionary<int,QuestItemClient> questDic = new Dictionary<int, QuestItemClient>();
+        private Dictionary<int,EnemyItemClient> enemyDic = new Dictionary<int, EnemyItemClient>();
 
         private ClientSimulationPlayer.Factory ownPlayerFactory;
         private ClientSimulationOtherPlayers.Factory otherPlayerFactory;
         private QuestItemClient.Factory questFactory;
+        private EnemyItemClient.Factory enemyFactory;
         private Dictionary<string,QuestItemClient> questPrefabs;
+        private Dictionary<string,EnemyItemClient> enemyPrefabs;
 
         private int ownId = -1;
 
@@ -22,11 +25,15 @@ namespace Client {
         public ClientSimulation(ClientSimulationPlayer.Factory own,
                                 ClientSimulationOtherPlayers.Factory other,
                                 QuestItemClient.Factory qFactory,
-                                Dictionary<string, QuestItemClient> qPrefabs) {
+                                EnemyItemClient.Factory eFactory,
+                                Dictionary<string, QuestItemClient> qPrefabs,
+                                Dictionary<string, EnemyItemClient> ePrefabs) {
             ownPlayerFactory = own;
             otherPlayerFactory = other;
             questFactory = qFactory;
             questPrefabs = qPrefabs;
+            enemyFactory = eFactory;
+            enemyPrefabs = ePrefabs;
         }
 
         public void SetOwnId(int hashcode) {
@@ -79,6 +86,20 @@ namespace Client {
                 ClearUpQuests(questStates);
 
 
+                var enemyStates = state.EnemyList;
+                for (int i= 0; i < enemyStates.Count; ++i) {
+                    var enemyState = enemyStates[i];
+                    if(enemyDic.ContainsKey(enemyState.Id)) {
+                        enemyDic[enemyState.Id].UpdateEntityState(enemyState);
+                    }
+                    else {
+                        var enemy = enemyFactory.Create(enemyPrefabs[enemyState.EnemyName]);
+                        enemy.UpdateEntityState(enemyState);
+                        enemyDic.Add(enemyState.Id, enemy);
+                    }
+                }
+
+                ClearUpEnemies(enemyStates);
             }
         }
 
@@ -97,6 +118,15 @@ namespace Client {
             {
                 GameObject.Destroy(kvp.Value.gameObject);
                 questDic.Remove(kvp.Key);
+            }
+        }
+
+        private void ClearUpEnemies(IList<EnemyInfo> states) {
+            var keys = enemyDic.Where(kvp => !states.Any(p => kvp.Key == p.Id)).ToList();
+            foreach(var kvp in keys)
+            {
+                GameObject.Destroy(kvp.Value.gameObject);
+                enemyDic.Remove(kvp.Key);
             }
         }
     }

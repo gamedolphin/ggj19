@@ -36,7 +36,6 @@ namespace OffScreenIndicator
 
         void Paint()
         {
-            Debug.Log(mainCamera);
             if(mainCamera == null) return;
             GameObject[] objects = GameObject.FindGameObjectsWithTag(targetTag);
             List<Target> targets = new List<Target>();

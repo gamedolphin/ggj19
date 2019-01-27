@@ -23,3 +23,8 @@ MonoBehaviour:
   questItemList:
   - Name: Chest
     Item: {fileID: 8902007346735502799, guid: 5d4e6fe3145ed3d449a51912637f28f5, type: 3}
+  enemyItemList:
+  - Name: Enemy1
+    Item: {fileID: 8821871110660173608, guid: 48a80605c672e6746a2a61d33782f68b, type: 3}
+  - Name: Enemy2
+    Item: {fileID: 8821871110660173608, guid: 27b04ba143d442a4b982119407a13416, type: 3}
