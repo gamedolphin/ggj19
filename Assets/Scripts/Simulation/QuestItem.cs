@@ -36,7 +36,9 @@ public class QuestItem : MonoBehaviour, IInteractible {
     }
 
     public void LoseHealth() {
-        Health -= 10;
+        if(Health > 0) {
+            Health -= 10;
+        }
         if(Health <= 0) {
             Die();
         }
