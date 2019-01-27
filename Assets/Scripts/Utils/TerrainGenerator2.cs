@@ -100,6 +100,9 @@ public class TerrainGenerator2 : MonoBehaviour
                 item.transform.SetParent(container.transform);
             }
         }
+        var collider = container.AddComponent<BoxCollider>();
+        collider.size = new Vector3(sizeX, 2, sizeY);
+        collider.center = new Vector3(sizeX/2, 0, sizeY/2);
     }
 
     public void PlaceTrees() {
@@ -116,7 +119,7 @@ public class TerrainGenerator2 : MonoBehaviour
         for (int i=0; i < xSize; ++i) {
             for (int j=0; j < ySize; ++j) {
                 if(types[i,j] == 2) {
-                    if(Random.Range(0,1f) > 0.2f) continue;
+                    if(Random.Range(0,1f) > 0.1f) continue;
                     var count = Random.Range(0, 2);
                     for (int k=0; k < count; ++k) {
                         var randomTree = treeList[Random.Range(0,treeList.Count-1)];

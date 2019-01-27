@@ -10,6 +10,8 @@ using System.Linq;
 public class WorldState {
     [Index(0)]
     public virtual IList<PlayerState> PlayerList { get; set; }
+    [Index(1)]
+    public virtual IList<QuestInfo> QuestList { get; set; }
 }
 
 namespace Server {
@@ -21,17 +23,22 @@ namespace Server {
             public InputData Data;
         }
 
+        private int totalQuestItems = 0;
+
         public Dictionary<int, SimulationPlayer> playerDic = new Dictionary<int, SimulationPlayer>();
         public List<SimulationPlayer> playerList =  new List<SimulationPlayer>();
+        public List<QuestItem> questList = new List<QuestItem>();
 
         private SimulationPlayer.Factory simFactory;
+        private QuestItem.Factory questFactory;
         private List<Transform> spawnPoints;
 
         private Queue<InputInfo> networkInput = new Queue<InputInfo>();
 
-        public ServerSimulation(SimulationPlayer.Factory playerFactory, List<Transform> spP) {
+        public ServerSimulation(SimulationPlayer.Factory playerFactory, QuestItem.Factory qFac, List<Transform> spP) {
             simFactory = playerFactory;
             spawnPoints = spP;
+            questFactory = qFac;
         }
 
         public void AddPlayer(int hashcode, NetPeer peer) {
@@ -63,10 +70,22 @@ namespace Server {
                 });
         }
 
+        public void SpawnQuest(QuestItem questPrefab) {
+            var item = questFactory.Create(questPrefab);
+            item.PlaceSelf(totalQuestItems++);
+            questList.Add(item);
+        }
+
+        public void DespawnQuest (QuestItem item) {
+            questList.Remove(item);
+        }
+
         public WorldState GetWorldState () {
             var playerStates = playerList.Select(p => p.GetPlayerState());
+            var questStates = questList.Select(q => q.GetQuestState());
             return new WorldState {
-                PlayerList = playerStates.ToArray()
+                PlayerList = playerStates.ToArray(),
+                QuestList = questStates.ToArray()
             };
         }
     }

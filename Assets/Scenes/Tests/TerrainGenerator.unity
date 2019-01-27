@@ -182,14 +182,14 @@ MonoBehaviour:
   - {fileID: 2642287064300549503, guid: 577c3a902190e504c9ea0d5a6bd354e1, type: 3}
   - {fileID: 4700852512569988311, guid: fa524c9c62b7b164fa04b1f2d970b3ac, type: 3}
   tileSize: {x: 1, y: 1}
-  xSize: 30
-  ySize: 30
+  xSize: 100
+  ySize: 100
   scale: 10
   octaves: 4
   persistance: 0.4
   lacunarity: 2
-  offsetX: 7.7
-  offsetY: 2.25
+  offsetX: 13241
+  offsetY: 1324123
 --- !u!1 &946254716
 GameObject:
   m_ObjectHideFlags: 0

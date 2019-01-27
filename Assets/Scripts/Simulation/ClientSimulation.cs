@@ -8,18 +8,25 @@ namespace Client {
     public class ClientSimulation : ITickable {
 
         private Dictionary<int,ClientSimulationEntity> playerDic = new Dictionary<int, ClientSimulationEntity>();
+        private Dictionary<int,QuestItemClient> questDic = new Dictionary<int, QuestItemClient>();
 
         private ClientSimulationPlayer.Factory ownPlayerFactory;
         private ClientSimulationOtherPlayers.Factory otherPlayerFactory;
+        private QuestItemClient.Factory questFactory;
+        private Dictionary<string,QuestItemClient> questPrefabs;
 
         private int ownId = -1;
 
         private Queue<WorldState> worldStates = new Queue<WorldState>();
 
         public ClientSimulation(ClientSimulationPlayer.Factory own,
-                                ClientSimulationOtherPlayers.Factory other) {
+                                ClientSimulationOtherPlayers.Factory other,
+                                QuestItemClient.Factory qFactory,
+                                Dictionary<string, QuestItemClient> qPrefabs) {
             ownPlayerFactory = own;
             otherPlayerFactory = other;
+            questFactory = qFactory;
+            questPrefabs = qPrefabs;
         }
 
         public void SetOwnId(int hashcode) {
@@ -55,6 +62,23 @@ namespace Client {
                 }
 
                 ClearUpPlayers(playerStates);
+
+                var questStates = state.QuestList;
+                for (int i= 0; i < questStates.Count; ++i) {
+                    var questState = questStates[i];
+                    if(questDic.ContainsKey(questState.Id)) {
+                        questDic[questState.Id].UpdateEntityState(questState);
+                    }
+                    else {
+                        var quest = questFactory.Create(questPrefabs[questState.QuestName]);
+                        quest.UpdateEntityState(questState);
+                        questDic.Add(questState.Id, quest);
+                    }
+                }
+
+                ClearUpQuests(questStates);
+
+
             }
         }
 
@@ -64,6 +88,15 @@ namespace Client {
             {
                 GameObject.Destroy(kvp.Value.gameObject);
                 playerDic.Remove(kvp.Key);
+            }
+        }
+
+        private void ClearUpQuests(IList<QuestInfo> states) {
+            var keys = questDic.Where(kvp => !states.Any(p => kvp.Key == p.Id)).ToList();
+            foreach(var kvp in keys)
+            {
+                GameObject.Destroy(kvp.Value.gameObject);
+                questDic.Remove(kvp.Key);
             }
         }
     }

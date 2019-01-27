@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be5ce7047b21b84fb3b54225577148b, type: 3}
+  m_Name: WorldClientInstaller1
+  m_EditorClassIdentifier: 
+  networkSettings:
+    Ip: localhost
+    Port: 6000
+    Key: password
+  playerPrefab: {fileID: 5838388452939935584, guid: 83dafef53e8b52247b27849a16c96cee,
+    type: 3}
+  otherPlayerPrefab: {fileID: 466498347394993968, guid: a9c6c6b0fb902834bbb482e4bb333515,
+    type: 3}
+  questItemList:
+  - Name: Chest
+    Item: {fileID: 8902007346735502799, guid: 5d4e6fe3145ed3d449a51912637f28f5, type: 3}
